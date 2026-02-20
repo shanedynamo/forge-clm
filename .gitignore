@@ -1,0 +1,28 @@
+node_modules/
+dist/
+build/
+.svelte-kit/
+.env
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+localstack_data/
+
+# Test artifacts
+test-results/
+playwright-report/

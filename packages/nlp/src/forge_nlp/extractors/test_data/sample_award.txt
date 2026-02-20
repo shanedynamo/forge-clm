@@ -1,0 +1,22 @@
+SECTION A — CONTRACT AWARD
+
+Contract Number: FA8726-24-C-0042
+Awarded to: Forge Defense Systems, LLC
+CAGE Code: 1ABC2
+UEI: HJ7K9LM2N3P4
+NAICS Code: 541512
+PSC: D307
+
+This firm-fixed-price (FFP) contract is awarded pursuant to FAR 52.212-4 and
+FAR 52.219-8 Alt III. The total ceiling value is $4,500,000.00 with an initial
+funded amount of $1.2M. The period of performance is 01 Feb 2025 through
+31 Jan 2026.
+
+Security Classification: SECRET
+
+The contractor shall comply with DFARS 252.204-7012 (Safeguarding Covered
+Defense Information) and DFARS 252.227-7013 Alt II (Rights in Technical Data).
+
+CLIN 0001 — Program Management: $500,000.00
+CLIN 0002AA — Software Development: $2,800,000.00
+CLIN 0003 — Testing and Evaluation: $1,200,000.00

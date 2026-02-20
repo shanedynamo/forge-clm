@@ -1,0 +1,18 @@
+NON-DISCLOSURE AGREEMENT
+
+This Mutual Non-Disclosure Agreement (NDA) is entered into as of January 1, 2026,
+by and between the Department of the Navy, represented under contract N00024-24-D-4275,
+and Forge Defense Systems, LLC (UEI: HJ7K9LM2N3P4, CAGE Code: 1ABC2).
+
+The parties agree that all information exchanged under this agreement shall be
+treated as FOUO (For Official Use Only) unless otherwise marked.
+
+This NDA shall be effective from 01/01/2026 to 12/31/2026.
+
+The disclosing party may designate information as Controlled Unclassified Information
+per the handling requirements in FAR 52.204-21 and DFARS 252.204-7012.
+
+Financial terms: The total value of information exchange is estimated at $75,000.
+No additional CLIN 0001 deliverables are required under this agreement.
+
+GSA Schedule reference: GS-35F-0119Y

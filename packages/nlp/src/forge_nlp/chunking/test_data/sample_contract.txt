@@ -1,0 +1,677 @@
+SECTION A — SOLICITATION/CONTRACT FORM
+
+1. Contract Number: FA8726-24-C-0042
+2. Award Effective Date: 01 February 2025
+3. Solicitation Number: FA8726-24-R-0037
+4. Issued By:
+   Air Force Life Cycle Management Center (AFLCMC)
+   Wright-Patterson Air Force Base, OH 45433
+
+5. Administered By:
+   Defense Contract Management Agency (DCMA)
+   DCMA Northern Ohio
+   Cleveland, OH 44199
+
+6. Contractor:
+   Forge Defense Systems, LLC
+   1234 Innovation Drive, Suite 500
+   Arlington, VA 22201
+   CAGE Code: 1ABC2
+   UEI: HJ7K9LM2N3P4
+   DUNS: 987654321
+
+7. Type of Contract: Firm-Fixed-Price (FFP)
+8. Total Contract Value: $4,500,000.00
+9. NAICS Code: 541512
+10. PSC Code: D307
+
+This contract is awarded pursuant to the authority of FAR Part 15, Contracting
+by Negotiation. The contractor shall provide all labor, materials, equipment,
+and supervision necessary to perform the requirements set forth herein.
+
+
+SECTION B — SUPPLIES OR SERVICES AND PRICES/COSTS
+
+B.1 CONTRACT LINE ITEM STRUCTURE
+
+The following Contract Line Items (CLINs) constitute the supplies and services
+to be furnished under this contract:
+
+CLIN 0001 — Program Management
+   Type: FFP
+   Quantity: 1 Lot
+   Unit Price: $500,000.00
+   Total: $500,000.00
+
+CLIN 0002 — Software Development
+   Type: FFP
+   Quantity: 1 Lot
+   Unit Price: $2,800,000.00
+   Total: $2,800,000.00
+
+CLIN 0002AA — Software Development Phase 1
+   Type: FFP
+   Total: $1,400,000.00
+
+CLIN 0002AB — Software Development Phase 2
+   Type: FFP
+   Total: $1,400,000.00
+
+CLIN 0003 — Testing and Evaluation
+   Type: FFP
+   Quantity: 1 Lot
+   Unit Price: $1,200,000.00
+   Total: $1,200,000.00
+
+B.2 OPTION ITEMS
+
+CLIN 1001 — Option Year 1 Program Management
+   Type: FFP
+   Total: $550,000.00
+   Option Period: 01 February 2026 through 31 January 2027
+
+CLIN 1002 — Option Year 1 Software Maintenance
+   Type: FFP
+   Total: $800,000.00
+   Option Period: 01 February 2026 through 31 January 2027
+
+B.3 CEILING PRICE
+
+The total ceiling price for this contract, including all option years, shall
+not exceed $8,650,000.00. The funded value at time of award is $4,500,000.00.
+The Government anticipates incrementally funding CLINs as additional funds
+become available.
+
+
+SECTION C — DESCRIPTION/SPECIFICATIONS/STATEMENT OF WORK
+
+C.1 BACKGROUND
+
+The Air Force Life Cycle Management Center requires an integrated software
+platform for contract lifecycle management. The current manual processes for
+tracking contract milestones, compliance requirements, and financial data are
+inefficient and error-prone. The contractor shall develop, deliver, and
+maintain a modern web-based application that automates these processes.
+
+C.2 SCOPE
+
+The contractor shall provide the following capabilities:
+(a) Contract data management and tracking
+(b) Automated compliance milestone monitoring
+(c) Financial tracking and reporting
+(d) Document management and version control
+(e) Role-based access control and audit logging
+(f) Integration with existing Government systems including FPDS-NG and SAM.gov
+
+C.3 TECHNICAL REQUIREMENTS
+
+C.3.1 System Architecture
+
+The system shall be developed using modern web technologies and shall be
+deployable to Government cloud infrastructure (AWS GovCloud or Azure Government).
+The system shall support a minimum of 500 concurrent users and shall maintain
+99.9% uptime during normal business hours.
+
+The contractor shall implement a microservices architecture with the following
+components: API gateway, authentication service, contract management service,
+compliance monitoring service, document storage service, and notification
+service. Each service shall be independently deployable and scalable.
+
+C.3.2 Data Requirements
+
+All data shall be stored in encrypted form at rest using AES-256 encryption.
+Data in transit shall be protected using TLS 1.2 or higher. The system shall
+maintain a complete audit trail of all data modifications, including the user
+identity, timestamp, and nature of the change.
+
+The database schema shall support the full lifecycle of federal contracts
+from solicitation through closeout, including all modifications, options,
+deliverables, and compliance milestones. The system shall support import and
+export of data in standard formats including JSON, CSV, and XML.
+
+C.3.3 User Interface Requirements
+
+The user interface shall be responsive and accessible, conforming to Section
+508 of the Rehabilitation Act and WCAG 2.1 Level AA guidelines. The interface
+shall support modern web browsers including Chrome, Firefox, Edge, and Safari.
+The system shall provide a dashboard view with configurable widgets showing
+contract status, upcoming milestones, financial summaries, and alerts.
+
+C.3.4 Reporting Requirements
+
+The system shall generate the following standard reports:
+(1) Contract Status Report — summary of all active contracts
+(2) Financial Summary Report — funding status by contract and CLIN
+(3) Compliance Dashboard — upcoming and overdue milestones
+(4) Modification History Report — all modifications by contract
+(5) Option Exercise Report — option periods and exercise deadlines
+(6) Deliverable Status Report — deliverable tracking and acceptance
+
+C.4 DELIVERABLES
+
+The contractor shall deliver the following items in accordance with the
+Contract Data Requirements List (CDRL) in Section J:
+
+C.4.1 System Design Document (SDD) — due 30 days after award
+C.4.2 Software Development Plan (SDP) — due 30 days after award
+C.4.3 Monthly Status Reports — due 10th of each month
+C.4.4 Test Plan — due 60 days after award
+C.4.5 User Documentation — due with final delivery
+C.4.6 Source Code Repository Access — continuous throughout performance
+C.4.7 Final System Delivery — due NLT 31 December 2025
+
+C.5 PERFORMANCE STANDARDS
+
+The contractor shall meet the following performance standards:
+- System availability: 99.9% during business hours (0700-1900 EST)
+- Page load time: < 3 seconds for standard pages
+- API response time: < 500ms for 95th percentile
+- Data backup: Daily incremental, weekly full
+- Incident response: Critical issues within 2 hours, major within 8 hours
+
+
+SECTION D — PACKAGING AND MARKING
+
+D.1 PACKAGING
+
+All deliverable items shall be packaged in accordance with standard commercial
+practices to ensure safe delivery. Electronic deliverables shall be provided
+via secure file transfer or Government-approved cloud storage.
+
+D.2 MARKING
+
+All deliverables shall be marked with the contract number, CLIN number,
+deliverable identifier, and security classification. Documents containing
+Controlled Unclassified Information (CUI) shall be marked in accordance with
+32 CFR Part 2002.
+
+D.3 ELECTRONIC DELIVERY
+
+Software deliverables shall be provided via the Government-designated code
+repository. Documentation shall be delivered in both PDF and editable format
+(Microsoft Word or equivalent). All electronic media shall be scanned for
+malware prior to delivery.
+
+
+SECTION E — INSPECTION AND ACCEPTANCE
+
+E.1 INSPECTION
+
+All deliverables are subject to inspection by the Government at destination.
+The Government reserves the right to inspect work in progress at the
+contractor's facility upon reasonable notice.
+
+E.2 ACCEPTANCE CRITERIA
+
+Acceptance of deliverables shall be based on the following criteria:
+(a) Conformance with the requirements of Section C
+(b) Successful completion of acceptance testing
+(c) Compliance with applicable quality standards
+(d) Proper packaging and marking per Section D
+
+E.3 ACCEPTANCE AUTHORITY
+
+The Contracting Officer's Representative (COR) is authorized to perform
+inspection and recommend acceptance or rejection. Final acceptance authority
+rests with the Contracting Officer.
+
+E.4 REJECTION AND CORRECTION
+
+If a deliverable is rejected, the contractor shall correct the deficiencies
+and resubmit within 10 business days at no additional cost to the Government.
+If the contractor fails to correct deficiencies within the specified timeframe,
+the Contracting Officer may terminate the contract for default.
+
+
+SECTION F — DELIVERIES OR PERFORMANCE
+
+F.1 PERIOD OF PERFORMANCE
+
+Base Period: 01 February 2025 through 31 January 2026
+Option Year 1: 01 February 2026 through 31 January 2027
+Option Year 2: 01 February 2027 through 31 January 2028
+
+F.2 DELIVERY SCHEDULE
+
+The contractor shall deliver all items in accordance with the following
+schedule:
+
+Item                          Due Date
+System Design Document        03 March 2025
+Software Development Plan     03 March 2025
+Test Plan                     02 April 2025
+Phase 1 Software Delivery     01 August 2025
+Phase 2 Software Delivery     01 December 2025
+Final System Delivery         31 December 2025
+User Documentation            31 December 2025
+
+Monthly Status Reports shall be delivered on the 10th of each month,
+beginning March 2025.
+
+F.3 PLACE OF DELIVERY
+
+Deliverables shall be delivered to:
+Air Force Life Cycle Management Center
+AFLCMC/HBAD
+Wright-Patterson AFB, OH 45433
+
+Electronic deliverables shall be uploaded to the designated SharePoint site
+or Government code repository as directed by the COR.
+
+
+SECTION G — CONTRACT ADMINISTRATION DATA
+
+G.1 CONTRACTING OFFICER
+
+Jane A. Smith
+Contracting Officer
+AFLCMC/PKA
+Wright-Patterson AFB, OH 45433
+Email: jane.smith@us.af.mil
+Phone: (937) 555-0123
+
+G.2 CONTRACTING OFFICER'S REPRESENTATIVE (COR)
+
+Michael B. Johnson
+COR
+AFLCMC/HBAD
+Wright-Patterson AFB, OH 45433
+Email: michael.johnson@us.af.mil
+Phone: (937) 555-0456
+
+G.3 CONTRACTOR PROGRAM MANAGER
+
+The contractor shall designate a Program Manager who shall be the primary
+point of contact for all contract-related matters. The Program Manager shall
+be available during normal business hours and shall respond to Government
+inquiries within one business day.
+
+G.4 INVOICING
+
+The contractor shall submit invoices via the Wide Area WorkFlow (WAWF)
+system. Invoices shall reference the contract number, CLIN number, and
+applicable delivery order number. The Government shall process payments
+within 30 days of receipt of a proper invoice.
+
+G.5 GOVERNMENT PROPERTY
+
+The Government shall provide the contractor with access to the following
+Government-furnished equipment (GFE):
+- Development and testing environment access (AWS GovCloud)
+- Test data sets (sanitized)
+- Access to existing legacy systems for integration testing
+
+All Government property shall be managed in accordance with FAR 52.245-1.
+
+
+SECTION H — SPECIAL CONTRACT REQUIREMENTS
+
+H.1 SECURITY REQUIREMENTS
+
+This contract involves access to Controlled Unclassified Information (CUI).
+The contractor shall comply with all applicable security requirements,
+including but not limited to NIST SP 800-171 and CMMC Level 2. All contractor
+personnel shall possess a minimum of a favorably adjudicated National Agency
+Check with Inquiries (NACI) prior to accessing Government systems.
+
+The contractor shall implement and maintain a System Security Plan (SSP) and
+Plan of Action and Milestones (POA&M) for all systems processing CUI. The
+contractor shall report any security incidents to the Contracting Officer
+and the COR within 72 hours of discovery.
+
+H.2 ORGANIZATIONAL CONFLICT OF INTEREST
+
+The contractor shall notify the Contracting Officer immediately upon discovery
+of any actual or potential organizational conflict of interest (OCI). The
+contractor shall not provide advisory services that would give it an unfair
+competitive advantage in future procurements related to this contract.
+
+H.3 KEY PERSONNEL
+
+The following positions are designated as Key Personnel:
+(a) Program Manager
+(b) Chief Software Architect
+(c) Lead Security Engineer
+
+Substitution of Key Personnel requires prior written approval of the
+Contracting Officer. The contractor shall provide a minimum of 30 days
+notice before any proposed substitution, along with resumes and
+qualifications of proposed replacements.
+
+H.4 TRAVEL
+
+All travel must be pre-approved by the COR. Travel costs shall be reimbursed
+in accordance with the Joint Travel Regulations (JTR). The contractor shall
+submit travel requests at least 14 days in advance of planned travel.
+
+H.5 SUBCONTRACTING
+
+The contractor shall not subcontract any portion of this contract without
+prior written approval of the Contracting Officer. All subcontracts shall
+include applicable flowdown clauses as specified in Section I.
+
+H.6 INTELLECTUAL PROPERTY
+
+All software, documentation, and other deliverables developed under this
+contract shall be the property of the United States Government. The
+Government shall have unlimited rights in all technical data and computer
+software delivered under this contract, in accordance with DFARS 252.227-7014.
+
+H.7 PHASE-IN/PHASE-OUT
+
+The contractor shall support a 30-day phase-in period at contract start and
+a 30-day phase-out period at contract completion or termination. During the
+phase-out period, the contractor shall provide knowledge transfer to the
+follow-on contractor or Government personnel, including all documentation,
+source code, and system access credentials.
+
+
+SECTION I — CONTRACT CLAUSES
+
+The following clauses are incorporated by reference or in full text:
+
+52.202-1 Definitions (JUN 2020)
+This clause establishes the definitions that apply throughout this contract.
+Key terms defined include "Contracting Officer," "Contractor," "Government,"
+"Head of the Agency," and other terms of art used in federal procurement.
+The definitions in this clause take precedence over any conflicting
+definitions in other contract documents unless specifically stated otherwise.
+All references to the Federal Acquisition Regulation (FAR) refer to the
+version in effect on the date of this contract unless otherwise specified.
+
+52.203-3 Gratuities (APR 1984)
+The Government may, by written notice to the Contractor, terminate the right
+of the Contractor to proceed under this contract if, after notice and hearing,
+the agency head or a designee determines that the Contractor, its agent, or
+another representative offered or gave a gratuity to an officer, official, or
+employee of the Government, and the intent of the gratuity was to obtain a
+contract or favorable treatment under a contract. The contractor shall report
+any suspected violations to the Inspector General.
+
+52.204-21 Basic Safeguarding of Covered Contractor Information Systems (JUN 2016)
+The Contractor shall apply the following basic safeguarding requirements and
+procedures to protect covered contractor information systems. At a minimum,
+the Contractor shall: (i) Limit information system access to authorized users,
+processes acting on behalf of authorized users, or devices; (ii) Limit
+information system access to the types of transactions and functions that
+authorized users are permitted to execute; (iii) Verify and control/limit
+connections to and use of external information systems; (iv) Control
+information posted or processed on publicly accessible information systems;
+(v) Identify information system users, processes acting on behalf of users,
+or devices; (vi) Authenticate (or verify) the identities of those users,
+processes, or devices; (vii) Sanitize or destroy information system media
+containing Federal Contract Information before disposal or release for reuse;
+(viii) Limit physical access to organizational information systems, equipment,
+and the respective operating environments to authorized individuals;
+(ix) Escort visitors and monitor visitor activity; limit physical access to
+organizational information systems; (x) Monitor, control, and protect
+organizational communications at the external boundaries and key internal
+boundaries of information systems; (xi) Implement subnetworks for publicly
+accessible system components that are physically or logically separated from
+internal networks; (xii) Identify, report, and correct information and
+information system flaws in a timely manner; (xiii) Provide protection from
+malicious code at appropriate locations within organizational information
+systems; (xiv) Update malicious code protection mechanisms when new releases
+are available; (xv) Perform periodic scans of the information system and
+real-time scans of files from external sources as files are downloaded, opened,
+or executed.
+
+52.212-4 Contract Terms and Conditions — Commercial Products and Commercial Services (NOV 2023)
+This clause sets forth the standard terms and conditions applicable to the
+acquisition of commercial products and commercial services. The clause
+addresses inspection and acceptance, assignment, disputes, payment, excusable
+delays, invoice requirements, patent indemnity, warranty, limitation of
+liability, termination for cause, termination for the Government's convenience,
+and other standard contract administration provisions. The contractor shall
+comply with all applicable requirements as specified in this clause.
+
+52.219-8 Utilization of Small Business Concerns (SEP 2023)
+It is the policy of the United States that small business concerns, veteran-owned
+small business concerns, service-disabled veteran-owned small business concerns,
+HUBZone small business concerns, small disadvantaged business concerns, and
+women-owned small business concerns shall have the maximum practicable
+opportunity to participate in performing contracts let by any Federal agency.
+The Contractor hereby agrees to carry out this policy in the awarding of
+subcontracts to the fullest extent consistent with efficient contract
+performance.
+
+52.219-8 Alt III Utilization of Small Business Concerns — Alternate III (SEP 2023)
+If the Contractor is a small business concern, the Contractor shall not use
+the provisions of this clause to provide a preference for small business
+concerns in excess of 50% of the total contract value. Small business
+subcontracting goals shall be established in accordance with the approved
+subcontracting plan and shall be reported quarterly through the Electronic
+Subcontracting Reporting System (eSRS).
+
+52.222-50 Combating Trafficking in Persons (NOV 2021)
+The contractor shall comply with the requirements of this clause regarding
+the prevention of trafficking in persons. The contractor shall not use forced
+labor, engage in severe forms of trafficking, or procure commercial sex acts
+during the period of performance. The contractor shall notify employees of
+the prohibited activities described in this clause and the actions that will
+be taken against them for violations.
+
+52.223-18 Encouraging Contractor Policies to Ban Text Messaging While Driving (JUN 2020)
+The contractor is encouraged to adopt and enforce policies that ban text
+messaging while driving company-owned or rented vehicles or Government-owned
+vehicles, or while driving privately-owned vehicles when on official
+Government business or when performing any work for or on behalf of the
+Government.
+
+52.232-22 Limitation of Funds (APR 1984)
+The Government is not obligated to reimburse the Contractor for costs incurred
+in excess of the total amount allotted to this contract. The Contractor is not
+authorized to continue performance under this contract (or to place orders
+under this contract) beyond the point at which total amount payable by the
+Government, including any estimated amounts withheld for changes, equals the
+total amount currently allotted to the contract. The Contractor shall notify
+the Contracting Officer in writing whenever the Contractor has reason to
+believe that the costs it expects to incur under this contract in the next
+60 days, when added to all costs previously incurred, will exceed 75 percent
+of the total amount allotted.
+
+52.232-33 Payment by Electronic Funds Transfer — System for Award Management (OCT 2018)
+Payment shall be made by electronic funds transfer (EFT) in accordance with
+the contractor's registration in the System for Award Management (SAM).
+
+52.243-1 Changes — Fixed Price (AUG 1987)
+The Contracting Officer may at any time, by written order, make changes within
+the general scope of this contract in drawings, designs, or specifications
+where the supplies to be furnished are to be specially manufactured for the
+Government; method of shipment or packing; and place of delivery. If any such
+change causes an increase or decrease in the cost of, or the time required for,
+the performance of any part of the work under this contract, the Contracting
+Officer shall make an equitable adjustment in the contract price, delivery
+schedule, or both, and shall modify the contract.
+
+52.243-1(Dev) Changes — Fixed Price (Deviation) (AUG 1987)
+This deviation to FAR 52.243-1 applies to this contract. In addition to the
+standard changes clause, the following applies: Any change that would result
+in a cost increase of more than 10% of the current CLIN value or a schedule
+extension of more than 30 calendar days shall require approval from the
+Program Executive Officer (PEO) before issuance. All change orders shall
+include a cost and schedule impact analysis prepared by the contractor.
+
+52.245-1 Government Property (JAN 2017)
+The contractor shall manage and account for all Government property in
+accordance with this clause. The contractor shall establish and maintain a
+property management system that complies with the requirements of this clause.
+The contractor shall promptly report to the Contracting Officer any loss,
+damage, or destruction of Government property.
+
+52.249-2 Termination for Convenience of the Government (Fixed-Price) (APR 2012)
+The Government may terminate performance of work under this contract in whole
+or in part if the Contracting Officer determines that a termination is in the
+Government's interest. The Contracting Officer shall terminate by delivering
+a Notice of Termination. After receipt of a termination notice, the contractor
+shall stop work as directed, terminate all subcontracts, and settle all
+outstanding claims.
+
+252.204-7012 Safeguarding Covered Defense Information and Cyber Incident Reporting (JAN 2023)
+The Contractor shall implement NIST SP 800-171 security requirements on all
+covered contractor information systems that process, store, or transmit covered
+defense information (CDI). The Contractor shall rapidly report cyber incidents
+to the DoD through the DIBNet portal within 72 hours of discovery. The
+Contractor shall preserve and protect images of all known affected information
+systems and all relevant monitoring and packet capture data for at least 90
+days from the cyber incident report. The Contractor shall provide the DoD with
+access to additional information or equipment necessary to conduct forensic
+analysis. Any subcontractors that will process CDI must also comply with the
+requirements of this clause.
+
+252.227-7013 Rights in Technical Data — Other Than Commercial Products and Commercial Services (FEB 2014)
+The Government shall have unlimited rights in technical data that are—
+(i) Form, fit, and function data; (ii) Data delivered under this contract
+that constitute a correction or change to Government-furnished data;
+(iii) Data that the contract requires to be delivered with unlimited rights.
+The Government shall have Government purpose rights for a period of five
+years in technical data that were developed in part at private expense and
+in part at Government expense. All technical data deliverables shall include
+appropriate restrictive markings if the contractor claims limited or
+restricted rights.
+
+252.227-7014 Rights in Other Than Commercial Computer Software and Other Than Commercial Computer Software Documentation (FEB 2014)
+The Government shall have unlimited rights in computer software developed
+exclusively at Government expense. Computer software developed at private
+expense shall be delivered with restricted rights unless the parties negotiate
+a different license. All software deliverables shall include appropriate
+marking of rights in accordance with this clause.
+
+252.232-7003 Electronic Submission of Payment Requests and Receiving Reports (DEC 2018)
+The contractor shall submit payment requests and receiving reports in
+electronic form using Wide Area WorkFlow (WAWF). The contractor shall
+ensure that payment requests are submitted in compliance with the
+requirements of the DFARS and applicable agency procedures.
+
+
+SECTION J — LIST OF ATTACHMENTS
+
+The following documents are attached to and made a part of this contract:
+
+Attachment J-1: Contract Data Requirements List (CDRL)
+Attachment J-2: Security Classification Guide
+Attachment J-3: Quality Assurance Surveillance Plan (QASP)
+Attachment J-4: Government Furnished Property List
+Attachment J-5: Key Personnel Requirements
+Attachment J-6: Past Performance References Template
+Attachment J-7: Small Business Subcontracting Plan Template
+
+All attachments are incorporated by reference and have the same force and
+effect as if they were included in full text. In the event of any conflict
+between the attachments and the body of the contract, the body of the
+contract shall take precedence.
+
+
+SECTION K — REPRESENTATIONS, CERTIFICATIONS, AND ACKNOWLEDGMENTS
+
+K.1 REPRESENTATIONS AND CERTIFICATIONS
+
+The Contractor represents and certifies, as part of its offer, the following:
+
+(a) The Contractor is a [  ] small business concern, [  ] large business
+    concern as defined in FAR 19.001.
+
+(b) The Contractor [  ] is, [  ] is not a women-owned small business concern.
+
+(c) The Contractor [  ] is, [  ] is not a veteran-owned small business concern.
+
+(d) The Contractor [  ] is, [  ] is not a service-disabled veteran-owned
+    small business concern.
+
+(e) The Contractor [  ] is, [  ] is not a HUBZone small business concern.
+
+K.2 CERTIFICATIONS REGARDING DEBARMENT AND SUSPENSION
+
+The Contractor certifies, to the best of its knowledge and belief, that
+neither the Contractor nor its principals are presently debarred, suspended,
+proposed for debarment, or declared ineligible for the award of contracts
+by any Federal agency.
+
+K.3 CERTIFICATION REGARDING RESPONSIBILITY MATTERS
+
+The Contractor certifies that, to the best of its knowledge and belief, within
+the last five years, the Contractor [  ] has, [  ] has not been convicted of
+or had a civil judgment rendered against it for commission of fraud or a
+criminal offense in connection with obtaining, attempting to obtain, or
+performing a federal, state, or local government contract or subcontract.
+
+K.4 BUY AMERICAN ACT CERTIFICATION
+
+The Contractor certifies that each end product, except those listed below,
+is a domestic end product. All components incorporated into end products
+shall comply with the requirements of the Buy American Act (41 U.S.C. 8301-8305)
+unless otherwise exempted.
+
+
+SECTION L — INSTRUCTIONS, CONDITIONS, AND NOTICES TO OFFERORS
+
+L.1 PROPOSAL INSTRUCTIONS
+
+This section contains the instructions that were applicable during the
+solicitation phase. The following instructions governed the preparation
+and submission of proposals:
+
+(a) Offerors shall submit proposals in three volumes:
+    Volume I — Technical Approach
+    Volume II — Past Performance
+    Volume III — Cost/Price
+
+(b) Technical proposals shall not exceed 50 pages.
+
+(c) Cost/price proposals shall include a detailed cost breakdown by CLIN
+    and by labor category.
+
+L.2 QUESTIONS AND COMMUNICATIONS
+
+All questions regarding this contract shall be directed to the Contracting
+Officer identified in Section G. The contractor shall not communicate directly
+with end users regarding contract performance without prior approval from
+the COR.
+
+L.3 AWARD NOTIFICATION
+
+Award was made based on best value to the Government, considering both
+technical merit and price. The evaluation was conducted in accordance with
+the factors and subfactors set forth in Section M.
+
+
+SECTION M — EVALUATION FACTORS FOR AWARD
+
+M.1 EVALUATION CRITERIA
+
+Proposals were evaluated based on the following factors, listed in descending
+order of importance:
+
+Factor 1: Technical Approach (Most Important)
+- Understanding of requirements
+- Proposed technical solution
+- Development methodology and schedule
+- Risk identification and mitigation
+
+Factor 2: Past Performance (Important)
+- Relevance of past contracts
+- Quality of deliverables
+- Schedule performance
+- Customer satisfaction
+
+Factor 3: Cost/Price (Less Important Than Technical and Past Performance)
+- Price reasonableness
+- Price realism
+- Cost risk analysis
+
+M.2 EVALUATION METHODOLOGY
+
+Technical proposals were evaluated on an adjectival rating scale: Outstanding,
+Good, Acceptable, Marginal, and Unacceptable. Past performance was evaluated
+on a confidence rating scale: Substantial Confidence, Satisfactory Confidence,
+Neutral Confidence, Limited Confidence, and No Confidence.
+
+Cost/price was evaluated for reasonableness and realism. The Government reserved
+the right to award without discussions if the initial proposals were determined
+to be fair and reasonable.
+
+M.3 BASIS OF AWARD
+
+Award was made to the offeror whose proposal represented the best value to the
+Government, all evaluation factors considered. Technical merit was significantly
+more important than cost/price in the source selection decision.

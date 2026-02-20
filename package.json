@@ -1,0 +1,29 @@
+{
+  "name": "forge-clm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Forge — Federal Contract Lifecycle Management System",
+  "workspaces": [
+    "packages/*",
+    "infra",
+    "tests"
+  ],
+  "scripts": {
+    "dev": "docker compose up",
+    "dev:api": "npm -w packages/api run dev",
+    "dev:web": "npm -w packages/web run dev",
+    "build": "npm -w packages/shared run build && npm -w packages/api run build && npm -w packages/web run build",
+    "test": "npm -w packages/api run test && npm -w packages/web run test",
+    "test:integration": "npm -w tests run test:integration",
+    "test:e2e": "npm -w tests run test:e2e",
+    "lint": "npm -w packages/api run lint && npm -w packages/web run lint",
+    "db:migrate": "npm -w packages/api run db:migrate",
+    "db:seed": "npm -w packages/api run db:seed"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

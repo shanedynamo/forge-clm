@@ -20,8 +20,8 @@ RUN pip install --no-cache-dir \
     python-multipart>=0.0.18
 
 # Install the forge-nlp package
-COPY pyproject.toml ./
-COPY src/ ./src/
+COPY packages/nlp/pyproject.toml ./
+COPY packages/nlp/src/ ./src/
 RUN pip install --no-cache-dir -e .
 
 # Pre-download the LegalBERT model so container startup is fast

@@ -76,14 +76,21 @@ const MOCK_OVERDUE: OverdueItem[] = [
   },
 ];
 
+// Generate future dates relative to today so groupByWeek never goes stale
+function futureDate(daysFromNow: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + daysFromNow);
+  return d.toISOString().slice(0, 10);
+}
+
 const MOCK_UPCOMING: ComplianceItem[] = [
-  // This week (within 7 days from 2026-02-19)
+  // This week (within 7 days)
   {
     id: "up-1",
     contractId: "c-1",
     contractNumber: "FA8726-24-C-0042",
     milestoneName: "Status Report",
-    dueDate: "2026-02-20",
+    dueDate: futureDate(2),
     status: "PENDING",
   },
   // Next week
@@ -92,7 +99,7 @@ const MOCK_UPCOMING: ComplianceItem[] = [
     contractId: "c-2",
     contractNumber: "N00024-23-C-5500",
     milestoneName: "Cost Report",
-    dueDate: "2026-02-28",
+    dueDate: futureDate(10),
     status: "PENDING",
   },
   // In 2 weeks
@@ -101,7 +108,7 @@ const MOCK_UPCOMING: ComplianceItem[] = [
     contractId: "c-1",
     contractNumber: "FA8726-24-C-0042",
     milestoneName: "Deliverable Submission",
-    dueDate: "2026-03-05",
+    dueDate: futureDate(17),
     status: "PENDING",
   },
   // In 3-4 weeks
@@ -110,7 +117,7 @@ const MOCK_UPCOMING: ComplianceItem[] = [
     contractId: "c-3",
     contractNumber: "W91CRB-25-D-0001",
     milestoneName: "Quarterly Review",
-    dueDate: "2026-03-15",
+    dueDate: futureDate(25),
     status: "PENDING",
   },
 ];
@@ -354,9 +361,9 @@ describe("Compliance dashboard — Funding status", () => {
     expect(bars.length).toBe(3);
 
     // 92% should be red, 85% orange, 50% green
-    expect(bars[0]!.className).toContain("bg-red");
-    expect(bars[1]!.className).toContain("bg-orange");
-    expect(bars[2]!.className).toContain("bg-green");
+    expect(bars[0]!.className).toContain("bg-danger");
+    expect(bars[1]!.className).toContain("bg-warning");
+    expect(bars[2]!.className).toContain("bg-success");
 
     // Check contract numbers in order
     expect(rows[0]!.textContent).toContain("FA8726-24-C-0042");

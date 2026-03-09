@@ -36,7 +36,7 @@
         onToggleSidebar={toggleSidebar}
       />
 
-      <main class="flex-1 overflow-y-auto p-6" data-testid="main-content">
+      <main class="flex-1 overflow-y-auto bg-porcelain px-6 py-6" data-testid="main-content">
         <slot />
       </main>
     </div>

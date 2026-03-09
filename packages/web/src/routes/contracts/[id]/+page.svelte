@@ -46,27 +46,27 @@
 </script>
 
 {#if !contract}
-  <div class="text-center text-gray-500 py-12" data-testid="not-found">
+  <div class="font-body text-center text-slate-500 py-12" data-testid="not-found">
     Contract not found
   </div>
 {:else}
-  <div data-testid="contract-detail">
+  <div class="page-enter" data-testid="contract-detail">
     <!-- Header -->
     <div class="mb-6 flex items-start justify-between">
       <div>
         <div class="flex items-center gap-3">
-          <a href="/contracts" class="text-sm text-gray-500 hover:text-navy-700">&larr; Contracts</a>
+          <a href="/contracts" class="font-body text-sm text-slate-500 hover:text-coral">&larr; Contracts</a>
         </div>
-        <h1 class="mt-1 text-2xl font-bold text-navy-900" data-testid="contract-number">
+        <h1 class="mt-1 font-heading text-2xl font-bold text-slate-900" data-testid="contract-number">
           {contract.contractNumber}
         </h1>
-        <p class="mt-1 text-sm text-gray-500">{contract.awardingAgency} &middot; {contract.contractType}</p>
+        <p class="mt-1 font-body text-sm text-slate-500">{contract.awardingAgency} &middot; {contract.contractType}</p>
       </div>
       <span
-        class="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium
-          {contract.status === 'ACTIVE' ? 'bg-green-100 text-green-700' :
-           contract.status === 'CLOSED' ? 'bg-gray-200 text-gray-600' :
-           'bg-blue-100 text-blue-700'}"
+        class="font-body inline-flex items-center rounded-full px-3 py-1 text-sm font-medium
+          {contract.status === 'ACTIVE' ? 'bg-success/10 text-success' :
+           contract.status === 'CLOSED' ? 'bg-slate-200 text-slate-600' :
+           'bg-info/10 text-info'}"
         data-testid="contract-status"
       >
         {contract.status.replace(/_/g, " ")}
@@ -74,14 +74,14 @@
     </div>
 
     <!-- Tab Navigation -->
-    <div class="mb-6 border-b border-gray-200">
+    <div class="mb-6 border-b border-slate-300">
       <nav class="-mb-px flex gap-6" data-testid="tab-nav">
         {#each TABS as tab}
           <button
-            class="whitespace-nowrap border-b-2 pb-3 text-sm font-medium transition-colors
+            class="whitespace-nowrap border-b-2 pb-3 text-sm font-medium transition-colors duration-150
               {activeTab === tab
-                ? 'border-navy-800 text-navy-900'
-                : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}"
+                ? 'border-coral text-slate-900 font-heading'
+                : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 font-body'}"
             on:click={() => (activeTab = tab)}
             data-testid="tab-{tab.toLowerCase()}"
           >

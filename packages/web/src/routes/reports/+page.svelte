@@ -89,17 +89,17 @@
   }
 </script>
 
-<div data-testid="reports-page">
-  <h2 class="mb-4 text-lg font-semibold text-navy-900">Reports</h2>
+<div class="page-enter" data-testid="reports-page">
+  <h2 class="mb-4 font-heading font-semibold text-lg text-slate-900">Reports</h2>
 
   <!-- Report Type Selector -->
   <div class="mb-4 flex flex-wrap gap-2" data-testid="report-type-selector">
     {#each REPORT_TYPES as rt}
       <button
-        class="rounded-lg border px-4 py-2 text-sm font-medium transition-colors
+        class="rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-150
           {selectedType === rt.type
-          ? 'border-accent-500 bg-accent-50 text-accent-700'
-          : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}"
+          ? 'border-coral bg-coral-50 text-coral-700'
+          : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-100'}"
         on:click={() => selectType(rt.type)}
         data-testid="report-type-option"
         data-report-type={rt.type}
@@ -110,35 +110,35 @@
   </div>
 
   <!-- Description -->
-  <p class="mb-4 text-sm text-gray-600" data-testid="report-description">
+  <p class="mb-4 font-body text-sm text-slate-700" data-testid="report-description">
     {selectedMeta.description}
   </p>
 
   <!-- Date Range + Actions -->
   <div
-    class="mb-6 flex flex-wrap items-end gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+    class="mb-6 flex flex-wrap items-end gap-4 rounded-lg border border-slate-300 bg-white p-4 shadow-sm"
   >
     <div>
-      <label for="start-date" class="block text-xs font-medium text-gray-600"
+      <label for="start-date" class="block font-body text-xs font-medium text-slate-700"
         >Start Date</label
       >
       <input
         id="start-date"
         type="date"
         bind:value={startDate}
-        class="mt-1 rounded border-gray-300 text-sm"
+        class="mt-1 rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50"
         data-testid="start-date"
       />
     </div>
     <div>
-      <label for="end-date" class="block text-xs font-medium text-gray-600"
+      <label for="end-date" class="block font-body text-xs font-medium text-slate-700"
         >End Date</label
       >
       <input
         id="end-date"
         type="date"
         bind:value={endDate}
-        class="mt-1 rounded border-gray-300 text-sm"
+        class="mt-1 rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50"
         data-testid="end-date"
       />
     </div>
@@ -148,11 +148,11 @@
       <div data-testid="field-agency">
         <label
           for="agency-filter"
-          class="block text-xs font-medium text-gray-600">Agency</label
+          class="block font-body text-xs font-medium text-slate-700">Agency</label
         >
         <select
           id="agency-filter"
-          class="mt-1 rounded border-gray-300 text-sm"
+          class="mt-1 rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50"
         >
           <option value="">All Agencies</option>
           <option value="USAF">USAF</option>
@@ -166,13 +166,13 @@
       <div data-testid="field-team">
         <label
           for="team-filter"
-          class="block text-xs font-medium text-gray-600">Team Member</label
+          class="block font-body text-xs font-medium text-slate-700">Team Member</label
         >
         <input
           id="team-filter"
           type="text"
           placeholder="All team members"
-          class="mt-1 rounded border-gray-300 text-sm"
+          class="mt-1 rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50"
         />
       </div>
     {/if}
@@ -180,7 +180,7 @@
       <div data-testid="field-threshold">
         <label
           for="threshold-input"
-          class="block text-xs font-medium text-gray-600"
+          class="block font-body text-xs font-medium text-slate-700"
           >Alert Threshold (%)</label
         >
         <input
@@ -189,14 +189,14 @@
           value="80"
           min="0"
           max="100"
-          class="mt-1 w-24 rounded border-gray-300 text-sm"
+          class="mt-1 w-24 rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50"
         />
       </div>
     {/if}
 
     <div class="flex gap-2">
       <button
-        class="rounded-md bg-navy-800 px-4 py-2 text-sm font-medium text-white hover:bg-navy-700 disabled:opacity-50"
+        class="rounded-lg bg-coral px-4 py-2 text-sm font-body font-medium text-white hover:brightness-110 transition-all duration-150 active:scale-[0.98] disabled:opacity-50"
         on:click={generateReport}
         disabled={loading}
         data-testid="generate-btn"
@@ -204,7 +204,7 @@
         {loading ? "Generating..." : "Generate Report"}
       </button>
       <button
-        class="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+        class="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 font-body transition-all duration-150 disabled:opacity-50"
         on:click={exportCsv}
         disabled={!report}
         data-testid="export-csv"
@@ -212,7 +212,7 @@
         Export CSV
       </button>
       <button
-        class="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+        class="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 font-body transition-all duration-150 disabled:opacity-50"
         on:click={exportDocx}
         disabled={!report}
         data-testid="export-docx"
@@ -225,9 +225,9 @@
   <!-- Loading State -->
   {#if loading}
     <div class="space-y-4" data-testid="report-loading">
-      <div class="h-24 animate-pulse rounded-lg bg-gray-200"></div>
-      <div class="h-64 animate-pulse rounded-lg bg-gray-200"></div>
-      <div class="h-48 animate-pulse rounded-lg bg-gray-200"></div>
+      <div class="h-24 dynamo-skeleton"></div>
+      <div class="h-64 dynamo-skeleton"></div>
+      <div class="h-48 dynamo-skeleton"></div>
     </div>
   {/if}
 
@@ -238,13 +238,13 @@
       <div class="mb-6 grid grid-cols-4 gap-4">
         {#each Object.entries(report.summary) as [key, value]}
           <div
-            class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+            class="rounded-lg border border-slate-300 bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-200"
             data-testid="summary-card"
           >
-            <div class="text-xs font-medium uppercase text-gray-500">
+            <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">
               {formatSummaryKey(key)}
             </div>
-            <div class="mt-1 text-2xl font-bold text-navy-900">
+            <div class="mt-1 font-dramatic text-2xl font-bold text-slate-900">
               {typeof value === "number" ? value.toLocaleString() : value}
             </div>
           </div>
@@ -253,7 +253,7 @@
 
       <!-- Chart -->
       <div
-        class="mb-6 rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+        class="mb-6 rounded-lg border border-slate-300 bg-white p-5 shadow-sm"
       >
         <canvas
           data-testid="report-chart"
@@ -265,25 +265,25 @@
       <!-- Data Table -->
       {#if report.rows.length > 0}
         <div
-          class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm"
+          class="overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm"
         >
-          <table class="w-full text-left text-sm" data-testid="report-table">
-            <thead class="border-b border-gray-200 bg-gray-50">
+          <table class="dynamo-table w-full text-left text-sm" data-testid="report-table">
+            <thead class="border-b border-slate-200 bg-slate-100">
               <tr>
                 {#each Object.keys(report.rows[0]) as col}
                   <th
-                    class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+                    class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
                   >
                     {formatSummaryKey(col)}
                   </th>
                 {/each}
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
+            <tbody class="divide-y divide-slate-200">
               {#each report.rows as row}
                 <tr data-testid="report-row">
                   {#each Object.values(row) as val}
-                    <td class="px-3 py-2.5 text-gray-700">
+                    <td class="px-3 py-2.5 font-body text-slate-700">
                       {typeof val === "number" ? val.toLocaleString() : val}
                     </td>
                   {/each}

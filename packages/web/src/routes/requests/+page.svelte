@@ -14,7 +14,7 @@
     { status: "IN_PROGRESS", label: "In Progress", color: "bg-amber-50 border-amber-200" },
     { status: "UNDER_REVIEW", label: "Under Review", color: "bg-purple-50 border-purple-200" },
     { status: "COMPLETED", label: "Completed", color: "bg-green-50 border-green-200" },
-    { status: "CANCELLED", label: "Cancelled", color: "bg-gray-50 border-gray-200" },
+    { status: "CANCELLED", label: "Cancelled", color: "bg-slate-50 border-slate-200" },
   ];
 
   const REQUEST_TYPES: RequestType[] = [
@@ -176,15 +176,15 @@
   }
 </script>
 
-<div data-testid="requests-page">
+<div class="page-enter" data-testid="requests-page">
   <!-- Header -->
   <div class="mb-6 flex items-center justify-between">
-    <h2 class="text-lg font-semibold text-navy-900">Request Queue</h2>
+    <h2 class="font-heading text-lg font-semibold text-slate-900">Request Queue</h2>
     <div class="flex items-center gap-3">
       <!-- Filters -->
       <select
         bind:value={filterType}
-        class="rounded border-gray-300 text-sm"
+        class="rounded-lg border-slate-300 text-sm font-body"
         data-testid="filter-type"
       >
         <option value="">All Types</option>
@@ -194,7 +194,7 @@
       </select>
       <select
         bind:value={filterPriority}
-        class="rounded border-gray-300 text-sm"
+        class="rounded-lg border-slate-300 text-sm font-body"
         data-testid="filter-priority"
       >
         <option value="">All Priorities</option>
@@ -205,7 +205,7 @@
       </select>
 
       <button
-        class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white hover:bg-accent-500"
+        class="rounded-lg bg-coral px-4 py-2 text-sm font-medium text-white hover:brightness-110 font-body transition-all duration-150 active:scale-[0.98]"
         on:click={() => { showModal = true; resetForm(); }}
         data-testid="new-request-btn"
       >
@@ -218,7 +218,7 @@
   <div class="flex gap-4 overflow-x-auto pb-4" data-testid="kanban-board">
     {#each COLUMNS as col}
       <div
-        class="flex w-72 shrink-0 flex-col rounded-lg border {col.color}"
+        class="flex w-72 shrink-0 flex-col rounded-lg border border-slate-300 {col.color}"
         data-testid="kanban-column"
         data-status={col.status}
         on:drop|preventDefault={() => handleDrop(col.status)}
@@ -227,8 +227,8 @@
       >
         <div class="border-b px-3 py-2.5">
           <div class="flex items-center justify-between">
-            <span class="text-sm font-semibold text-gray-700">{col.label}</span>
-            <span class="rounded-full bg-white px-2 py-0.5 text-xs font-medium text-gray-500" data-testid="column-count">
+            <span class="font-heading text-sm font-semibold text-slate-700">{col.label}</span>
+            <span class="rounded-full bg-white/80 px-2 py-0.5 text-xs font-medium text-slate-500 font-mono" data-testid="column-count">
               {cardsForColumn(col.status, data.requests, filterType, filterPriority, filterAssignee).length}
             </span>
           </div>
@@ -236,7 +236,7 @@
         <div class="flex-1 space-y-2 p-2" data-testid="column-cards">
           {#each cardsForColumn(col.status, data.requests, filterType, filterPriority, filterAssignee) as req (req.id)}
             <div
-              class="cursor-grab rounded-lg border border-gray-200 bg-white p-3 shadow-sm transition-shadow hover:shadow-md"
+              class="rounded-lg border border-slate-300 bg-white p-3 shadow-sm transition-shadow duration-200 hover:shadow-md cursor-grab"
               draggable="true"
               on:dragstart={() => handleDragStart(req.id)}
               data-testid="request-card"
@@ -244,25 +244,25 @@
               role="listitem"
             >
               <div class="mb-2 flex items-center gap-2">
-                <span class="flex h-6 w-6 items-center justify-center rounded bg-navy-100 text-xs font-bold text-navy-700">
+                <span class="flex h-6 w-6 items-center justify-center rounded bg-coral-50 text-xs font-bold text-coral-700">
                   {TYPE_ICONS[req.requestType] ?? "?"}
                 </span>
-                <span class="text-sm font-medium text-gray-900 line-clamp-1">{req.title}</span>
+                <span class="font-body text-sm font-medium text-slate-900 line-clamp-1">{req.title}</span>
               </div>
-              <p class="mb-2 text-xs text-gray-500 line-clamp-2">{req.summary}</p>
+              <p class="mb-2 font-body text-xs text-slate-500 line-clamp-2">{req.summary}</p>
               <div class="flex items-center justify-between">
                 <span
-                  class="rounded-full px-2 py-0.5 text-xs font-medium {PRIORITY_COLORS[req.priority]}"
+                  class="rounded-full px-2.5 py-0.5 text-xs font-medium {PRIORITY_COLORS[req.priority]}"
                   data-testid="priority-badge"
                 >
                   {req.priority}
                 </span>
-                <span class="text-xs text-gray-400">{req.requester}</span>
+                <span class="font-body text-xs text-slate-500">{req.requester}</span>
               </div>
-              <div class="mt-1 flex items-center justify-between text-xs text-gray-400">
-                <span>{formatDate(req.submittedAt)}</span>
+              <div class="mt-1 flex items-center justify-between">
+                <span class="font-mono text-xs text-slate-500">{formatDate(req.submittedAt)}</span>
                 {#if req.assignedTo}
-                  <span>{req.assignedTo}</span>
+                  <span class="font-body text-xs text-slate-500">{req.assignedTo}</span>
                 {/if}
               </div>
             </div>
@@ -274,12 +274,12 @@
 
   <!-- New Request Modal -->
   {#if showModal}
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" data-testid="request-modal">
-      <div class="w-full max-w-lg rounded-lg bg-white p-6 shadow-xl">
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" data-testid="request-modal">
+      <div class="w-full max-w-lg rounded-xl bg-white p-6 shadow-lg">
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-lg font-semibold text-navy-900">New Request</h3>
+          <h3 class="font-heading text-lg font-semibold text-slate-900">New Request</h3>
           <button
-            class="text-gray-400 hover:text-gray-600"
+            class="text-slate-400 hover:text-slate-600"
             on:click={() => { showModal = false; }}
           >
             &times;
@@ -288,8 +288,8 @@
 
         <form on:submit|preventDefault={handleSubmit} class="space-y-4" data-testid="request-form">
           <div>
-            <label for="req-type" class="block text-sm font-medium text-gray-700">Request Type</label>
-            <select id="req-type" bind:value={formType} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="form-type">
+            <label for="req-type" class="block font-body text-sm font-medium text-slate-700">Request Type</label>
+            <select id="req-type" bind:value={formType} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="form-type">
               {#each REQUEST_TYPES as t}
                 <option value={t}>{statusLabel(t)}</option>
               {/each}
@@ -297,18 +297,18 @@
           </div>
 
           <div>
-            <label for="req-title" class="block text-sm font-medium text-gray-700">Title</label>
-            <input id="req-title" bind:value={formTitle} class="mt-1 w-full rounded border-gray-300 text-sm" required data-testid="form-title" />
+            <label for="req-title" class="block font-body text-sm font-medium text-slate-700">Title</label>
+            <input id="req-title" bind:value={formTitle} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" required data-testid="form-title" />
           </div>
 
           <div>
-            <label for="req-summary" class="block text-sm font-medium text-gray-700">Summary</label>
-            <textarea id="req-summary" bind:value={formSummary} rows="2" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="form-summary"></textarea>
+            <label for="req-summary" class="block font-body text-sm font-medium text-slate-700">Summary</label>
+            <textarea id="req-summary" bind:value={formSummary} rows="2" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="form-summary"></textarea>
           </div>
 
           <div>
-            <label for="req-priority" class="block text-sm font-medium text-gray-700">Priority</label>
-            <select id="req-priority" bind:value={formPriority} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="form-priority">
+            <label for="req-priority" class="block font-body text-sm font-medium text-slate-700">Priority</label>
+            <select id="req-priority" bind:value={formPriority} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="form-priority">
               <option value="LOW">Low</option>
               <option value="NORMAL">Normal</option>
               <option value="HIGH">High</option>
@@ -319,85 +319,85 @@
           <!-- Dynamic Fields -->
           <div data-testid="dynamic-fields">
             {#if formType === "NDA"}
-              <div class="space-y-3 rounded border border-gray-200 p-3" data-testid="nda-fields">
+              <div class="space-y-3 rounded-lg border border-slate-300 p-3" data-testid="nda-fields">
                 <div>
-                  <label for="nda-counterparty" class="block text-xs font-medium text-gray-600">Counterparty Name</label>
-                  <input id="nda-counterparty" bind:value={ndaCounterparty} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-counterparty" />
+                  <label for="nda-counterparty" class="block font-body text-xs font-medium text-slate-700">Counterparty Name</label>
+                  <input id="nda-counterparty" bind:value={ndaCounterparty} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-counterparty" />
                 </div>
                 <div>
-                  <label for="nda-type" class="block text-xs font-medium text-gray-600">NDA Type</label>
-                  <select id="nda-type" bind:value={ndaType} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-nda-type">
+                  <label for="nda-type" class="block font-body text-xs font-medium text-slate-700">NDA Type</label>
+                  <select id="nda-type" bind:value={ndaType} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-nda-type">
                     <option value="mutual">Mutual</option>
                     <option value="unilateral">Unilateral</option>
                   </select>
                 </div>
                 <div>
-                  <label for="nda-scope" class="block text-xs font-medium text-gray-600">Scope</label>
-                  <input id="nda-scope" bind:value={ndaScope} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-scope" />
+                  <label for="nda-scope" class="block font-body text-xs font-medium text-slate-700">Scope</label>
+                  <input id="nda-scope" bind:value={ndaScope} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-scope" />
                 </div>
                 <div>
-                  <label for="nda-deadline" class="block text-xs font-medium text-gray-600">Deadline</label>
-                  <input id="nda-deadline" type="date" bind:value={ndaDeadline} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-deadline" />
+                  <label for="nda-deadline" class="block font-body text-xs font-medium text-slate-700">Deadline</label>
+                  <input id="nda-deadline" type="date" bind:value={ndaDeadline} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-deadline" />
                 </div>
               </div>
             {:else if formType === "MOU"}
-              <div class="space-y-3 rounded border border-gray-200 p-3" data-testid="mou-fields">
+              <div class="space-y-3 rounded-lg border border-slate-300 p-3" data-testid="mou-fields">
                 <div>
-                  <label for="mou-parties" class="block text-xs font-medium text-gray-600">Parties</label>
-                  <input id="mou-parties" bind:value={mouParties} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-parties" />
+                  <label for="mou-parties" class="block font-body text-xs font-medium text-slate-700">Parties</label>
+                  <input id="mou-parties" bind:value={mouParties} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-parties" />
                 </div>
                 <div>
-                  <label for="mou-purpose" class="block text-xs font-medium text-gray-600">Purpose</label>
-                  <input id="mou-purpose" bind:value={mouPurpose} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-purpose" />
+                  <label for="mou-purpose" class="block font-body text-xs font-medium text-slate-700">Purpose</label>
+                  <input id="mou-purpose" bind:value={mouPurpose} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-purpose" />
                 </div>
                 <div>
-                  <label for="mou-duration" class="block text-xs font-medium text-gray-600">Duration</label>
-                  <input id="mou-duration" bind:value={mouDuration} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-duration" />
+                  <label for="mou-duration" class="block font-body text-xs font-medium text-slate-700">Duration</label>
+                  <input id="mou-duration" bind:value={mouDuration} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-duration" />
                 </div>
               </div>
             {:else if formType === "MOD"}
-              <div class="space-y-3 rounded border border-gray-200 p-3" data-testid="mod-fields">
+              <div class="space-y-3 rounded-lg border border-slate-300 p-3" data-testid="mod-fields">
                 <div>
-                  <label for="mod-contract" class="block text-xs font-medium text-gray-600">Contract Number</label>
-                  <input id="mod-contract" bind:value={modContractNumber} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-contract-number" />
+                  <label for="mod-contract" class="block font-body text-xs font-medium text-slate-700">Contract Number</label>
+                  <input id="mod-contract" bind:value={modContractNumber} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-contract-number" />
                 </div>
                 <div>
-                  <label for="mod-type" class="block text-xs font-medium text-gray-600">Mod Type</label>
-                  <input id="mod-type" bind:value={modType} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-mod-type" />
+                  <label for="mod-type" class="block font-body text-xs font-medium text-slate-700">Mod Type</label>
+                  <input id="mod-type" bind:value={modType} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-mod-type" />
                 </div>
                 <div>
-                  <label for="mod-desc" class="block text-xs font-medium text-gray-600">Description</label>
-                  <textarea id="mod-desc" bind:value={modDescription} rows="2" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-mod-description"></textarea>
+                  <label for="mod-desc" class="block font-body text-xs font-medium text-slate-700">Description</label>
+                  <textarea id="mod-desc" bind:value={modDescription} rows="2" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-mod-description"></textarea>
                 </div>
               </div>
             {:else if formType === "OPTION_EXERCISE"}
-              <div class="space-y-3 rounded border border-gray-200 p-3" data-testid="option-fields">
+              <div class="space-y-3 rounded-lg border border-slate-300 p-3" data-testid="option-fields">
                 <div>
-                  <label for="opt-contract" class="block text-xs font-medium text-gray-600">Contract Number</label>
-                  <input id="opt-contract" bind:value={optContractNumber} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-opt-contract" />
+                  <label for="opt-contract" class="block font-body text-xs font-medium text-slate-700">Contract Number</label>
+                  <input id="opt-contract" bind:value={optContractNumber} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-opt-contract" />
                 </div>
                 <div>
-                  <label for="opt-number" class="block text-xs font-medium text-gray-600">Option Number</label>
-                  <input id="opt-number" bind:value={optOptionNumber} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-opt-number" />
+                  <label for="opt-number" class="block font-body text-xs font-medium text-slate-700">Option Number</label>
+                  <input id="opt-number" bind:value={optOptionNumber} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-opt-number" />
                 </div>
               </div>
             {:else if formType === "FUNDING_ACTION"}
-              <div class="space-y-3 rounded border border-gray-200 p-3" data-testid="funding-fields">
+              <div class="space-y-3 rounded-lg border border-slate-300 p-3" data-testid="funding-fields">
                 <div>
-                  <label for="fund-contract" class="block text-xs font-medium text-gray-600">Contract Number</label>
-                  <input id="fund-contract" bind:value={fundContractNumber} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-fund-contract" />
+                  <label for="fund-contract" class="block font-body text-xs font-medium text-slate-700">Contract Number</label>
+                  <input id="fund-contract" bind:value={fundContractNumber} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-fund-contract" />
                 </div>
                 <div>
-                  <label for="fund-clin" class="block text-xs font-medium text-gray-600">CLIN</label>
-                  <input id="fund-clin" bind:value={fundClin} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-clin" />
+                  <label for="fund-clin" class="block font-body text-xs font-medium text-slate-700">CLIN</label>
+                  <input id="fund-clin" bind:value={fundClin} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-clin" />
                 </div>
                 <div>
-                  <label for="fund-amount" class="block text-xs font-medium text-gray-600">Amount</label>
-                  <input id="fund-amount" bind:value={fundAmount} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-amount" />
+                  <label for="fund-amount" class="block font-body text-xs font-medium text-slate-700">Amount</label>
+                  <input id="fund-amount" bind:value={fundAmount} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body h-10 focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-amount" />
                 </div>
                 <div>
-                  <label for="fund-justification" class="block text-xs font-medium text-gray-600">Justification</label>
-                  <textarea id="fund-justification" bind:value={fundJustification} rows="2" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="field-justification"></textarea>
+                  <label for="fund-justification" class="block font-body text-xs font-medium text-slate-700">Justification</label>
+                  <textarea id="fund-justification" bind:value={fundJustification} rows="2" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="field-justification"></textarea>
                 </div>
               </div>
             {/if}
@@ -406,14 +406,14 @@
           <div class="flex justify-end gap-2 pt-2">
             <button
               type="button"
-              class="rounded border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              class="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 font-body transition-all duration-150"
               on:click={() => { showModal = false; }}
             >
               Cancel
             </button>
             <button
               type="submit"
-              class="rounded bg-navy-800 px-4 py-2 text-sm font-medium text-white hover:bg-navy-700"
+              class="rounded-lg bg-coral px-4 py-2 text-sm font-medium text-white hover:brightness-110 font-body transition-all duration-150 active:scale-[0.98]"
               data-testid="form-submit"
             >
               Submit Request

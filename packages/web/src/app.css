@@ -3,17 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --color-navy: #15264e;
-  --color-accent: #2196f3;
+  --color-coral: #FE4E51;
+  --color-mahogany: #29000C;
+  --color-ash: #A7C4C2;
+  --color-black-cherry: #6B0F1A;
+  --color-porcelain: #FDFFFC;
 }
 
 body {
-  @apply bg-gray-50 text-gray-900;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  @apply bg-porcelain text-slate-900;
+  font-family: "Cabin", sans-serif;
 }
 
-/* Sidebar active link */
+/* ─── Typography Roles ───────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ─── Sidebar active link ────────────────────────────────────────── */
 .nav-link-active {
-  @apply bg-navy-800 text-white;
+  @apply bg-black-cherry/20 text-white border-l-[3px] border-l-coral;
+}
+
+/* ─── Focus states (Accessibility) ───────────────────────────────── */
+*:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-coral;
+}
+
+/* ─── Card hover transitions ─────────────────────────────────────── */
+.dynamo-card {
+  @apply rounded-lg border border-slate-300 bg-white p-5 shadow-sm transition-shadow duration-200;
+}
+.dynamo-card:hover {
+  @apply shadow-md;
+}
+
+/* ─── Button base transitions ────────────────────────────────────── */
+.dynamo-btn {
+  @apply transition-all duration-150 ease-in-out;
+}
+.dynamo-btn:active {
+  @apply scale-[0.98];
+}
+
+/* ─── Table styles ───────────────────────────────────────────────── */
+.dynamo-table tbody tr:nth-child(even) {
+  @apply bg-slate-100;
+}
+.dynamo-table tbody tr:hover {
+  @apply bg-gray-50;
+}
+.dynamo-table thead {
+  @apply sticky top-0 z-10;
+}
+
+/* ─── Skeleton loading ───────────────────────────────────────────── */
+.dynamo-skeleton {
+  @apply animate-pulse bg-slate-100 rounded-lg;
+}
+
+/* ─── Page entrance animation ────────────────────────────────────── */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 150ms ease-out;
 }

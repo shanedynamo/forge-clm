@@ -136,12 +136,12 @@
   $: sortedRules = [...data.rules].sort((a, b) => a.priority - b.priority);
 </script>
 
-<div data-testid="playbook-page">
+<div class="page-enter" data-testid="playbook-page">
   <!-- Header -->
   <div class="mb-6 flex items-center justify-between">
-    <h2 class="text-lg font-semibold text-navy-900">Playbook Rules</h2>
+    <h2 class="font-heading font-semibold text-lg text-slate-900">Playbook Rules</h2>
     <button
-      class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white hover:bg-accent-500"
+      class="rounded-lg bg-coral px-4 py-2 text-sm font-medium text-white hover:brightness-110 font-body transition-all duration-150 active:scale-[0.98]"
       on:click={openNewRule}
       data-testid="new-rule-btn"
     >
@@ -152,23 +152,23 @@
   <div class="flex gap-6">
     <!-- Rule List -->
     <div class="min-w-0 flex-1">
-      <div class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-        <table class="w-full text-left text-sm" data-testid="rules-table">
-          <thead class="border-b border-gray-200 bg-gray-50">
+      <div class="overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm">
+        <table class="dynamo-table w-full text-left text-sm" data-testid="rules-table">
+          <thead class="border-b border-slate-200 bg-slate-100">
             <tr>
               <th class="w-8 px-3 py-2.5"></th>
-              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">#</th>
-              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">Name</th>
-              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">Type</th>
-              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">Risk</th>
-              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">Enabled</th>
+              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading">#</th>
+              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading">Name</th>
+              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading">Type</th>
+              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading">Risk</th>
+              <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading">Enabled</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
+          <tbody class="divide-y divide-slate-200">
             {#each sortedRules as rule, idx (rule.id)}
               <tr
-                class="cursor-pointer transition-colors hover:bg-gray-50
-                  {editingRule?.id === rule.id ? 'bg-navy-50' : ''}"
+                class="cursor-pointer
+                  {editingRule?.id === rule.id ? 'bg-coral-50' : ''}"
                 on:click={() => openEditor(rule)}
                 draggable="true"
                 on:dragstart={() => handleDragStart(idx)}
@@ -177,21 +177,21 @@
                 data-testid="rule-row"
                 data-rule-id={rule.id}
               >
-                <td class="px-3 py-2.5 text-gray-400 cursor-grab">
+                <td class="px-3 py-2.5 text-slate-400 cursor-grab">
                   <span data-testid="drag-handle">::</span>
                 </td>
-                <td class="px-3 py-2.5 text-gray-500" data-testid="rule-priority">{rule.priority}</td>
-                <td class="px-3 py-2.5 font-medium text-gray-900" data-testid="rule-name">{rule.name}</td>
-                <td class="px-3 py-2.5 text-gray-600">{rule.type.replace(/_/g, " ")}</td>
+                <td class="px-3 py-2.5 text-slate-500 font-mono" data-testid="rule-priority">{rule.priority}</td>
+                <td class="px-3 py-2.5 font-body font-medium text-slate-900" data-testid="rule-name">{rule.name}</td>
+                <td class="px-3 py-2.5 font-body text-slate-700">{rule.type.replace(/_/g, " ")}</td>
                 <td class="px-3 py-2.5">
-                  <span class="rounded-full px-2 py-0.5 text-xs font-medium {riskColor(rule.riskIfDeviated)}" data-testid="rule-risk">
+                  <span class="rounded-full px-2.5 py-0.5 text-xs font-medium {riskColor(rule.riskIfDeviated)}" data-testid="rule-risk">
                     {rule.riskIfDeviated}
                   </span>
                 </td>
                 <td class="px-3 py-2.5" on:click|stopPropagation>
                   <button
                     class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors
-                      {rule.enabled ? 'bg-green-500' : 'bg-gray-300'}"
+                      {rule.enabled ? 'bg-success' : 'bg-slate-300'}"
                     on:click={() => toggleEnabled(rule)}
                     data-testid="toggle-enabled"
                     aria-label="Toggle enabled"
@@ -212,13 +212,13 @@
     <!-- Editor Panel -->
     {#if editingRule}
       <aside class="w-96 shrink-0" data-testid="rule-editor">
-        <div class="sticky top-6 rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+        <div class="sticky top-6 rounded-lg border border-slate-300 bg-white p-5 shadow-sm">
           <div class="mb-4 flex items-center justify-between">
-            <h3 class="text-sm font-semibold text-navy-900">
+            <h3 class="font-heading text-sm font-semibold text-slate-900">
               {isNew ? "New Rule" : "Edit Rule"}
             </h3>
             <button
-              class="text-gray-400 hover:text-gray-600"
+              class="text-slate-400 hover:text-slate-600"
               on:click={() => { editingRule = null; }}
             >
               &times;
@@ -227,81 +227,81 @@
 
           <form on:submit|preventDefault={saveRule} class="space-y-3" data-testid="rule-form">
             <div>
-              <label for="e-name" class="block text-xs font-medium text-gray-600">Name</label>
-              <input id="e-name" bind:value={eName} class="mt-1 w-full rounded border-gray-300 text-sm" required data-testid="editor-name" />
+              <label for="e-name" class="block font-body text-xs font-medium text-slate-700">Name</label>
+              <input id="e-name" bind:value={eName} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" required data-testid="editor-name" />
             </div>
             <div>
-              <label for="e-type" class="block text-xs font-medium text-gray-600">Type</label>
-              <select id="e-type" bind:value={eType} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-type">
+              <label for="e-type" class="block font-body text-xs font-medium text-slate-700">Type</label>
+              <select id="e-type" bind:value={eType} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-type">
                 {#each RULE_TYPES as t}
                   <option value={t}>{t.replace(/_/g, " ")}</option>
                 {/each}
               </select>
             </div>
             <div>
-              <label for="e-priority" class="block text-xs font-medium text-gray-600">Priority</label>
-              <input id="e-priority" type="number" bind:value={ePriority} min="1" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-priority" />
+              <label for="e-priority" class="block font-body text-xs font-medium text-slate-700">Priority</label>
+              <input id="e-priority" type="number" bind:value={ePriority} min="1" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-priority" />
             </div>
             <div class="flex items-center gap-2">
-              <input id="e-enabled" type="checkbox" bind:checked={eEnabled} class="rounded border-gray-300" data-testid="editor-enabled" />
-              <label for="e-enabled" class="text-xs font-medium text-gray-600">Enabled</label>
+              <input id="e-enabled" type="checkbox" bind:checked={eEnabled} class="rounded border-slate-300 text-coral focus:ring-coral" data-testid="editor-enabled" />
+              <label for="e-enabled" class="font-body text-xs font-medium text-slate-700">Enabled</label>
             </div>
 
             <!-- Conditions -->
-            <fieldset class="rounded border border-gray-200 p-3">
-              <legend class="px-1 text-xs font-semibold text-gray-500">Conditions</legend>
+            <fieldset class="rounded-lg border border-slate-300 p-3">
+              <legend class="px-1 font-heading text-xs font-semibold text-slate-500">Conditions</legend>
               <div class="space-y-2">
                 <div>
-                  <label for="e-clause" class="block text-xs text-gray-600">Clause Patterns (comma-separated)</label>
-                  <input id="e-clause" bind:value={eClausePatterns} placeholder="52.219-*, 252.227-*" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-clause-patterns" />
+                  <label for="e-clause" class="block font-body text-xs text-slate-700">Clause Patterns (comma-separated)</label>
+                  <input id="e-clause" bind:value={eClausePatterns} placeholder="52.219-*, 252.227-*" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-clause-patterns" />
                 </div>
                 <div>
-                  <label for="e-ctypes" class="block text-xs text-gray-600">Contract Types</label>
-                  <input id="e-ctypes" bind:value={eContractTypes} placeholder="FFP, CPFF" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-contract-types" />
+                  <label for="e-ctypes" class="block font-body text-xs text-slate-700">Contract Types</label>
+                  <input id="e-ctypes" bind:value={eContractTypes} placeholder="FFP, CPFF" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-contract-types" />
                 </div>
                 <div>
-                  <label for="e-threshold" class="block text-xs text-gray-600">Dollar Threshold</label>
-                  <input id="e-threshold" bind:value={eDollarThreshold} placeholder="1000000" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-dollar-threshold" />
+                  <label for="e-threshold" class="block font-body text-xs text-slate-700">Dollar Threshold</label>
+                  <input id="e-threshold" bind:value={eDollarThreshold} placeholder="1000000" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-dollar-threshold" />
                 </div>
                 <div>
-                  <label for="e-agencies" class="block text-xs text-gray-600">Agency Filters</label>
-                  <input id="e-agencies" bind:value={eAgencyFilters} placeholder="USAF, USN" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-agency-filters" />
+                  <label for="e-agencies" class="block font-body text-xs text-slate-700">Agency Filters</label>
+                  <input id="e-agencies" bind:value={eAgencyFilters} placeholder="USAF, USN" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-agency-filters" />
                 </div>
               </div>
             </fieldset>
 
             <div>
-              <label for="e-position" class="block text-xs font-medium text-gray-600">Standard Position</label>
-              <textarea id="e-position" bind:value={eStandardPosition} rows="3" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-standard-position"></textarea>
+              <label for="e-position" class="block font-body text-xs font-medium text-slate-700">Standard Position</label>
+              <textarea id="e-position" bind:value={eStandardPosition} rows="3" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-standard-position"></textarea>
             </div>
             <div>
-              <label for="e-risk" class="block text-xs font-medium text-gray-600">Risk if Deviated</label>
-              <select id="e-risk" bind:value={eRisk} class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-risk">
+              <label for="e-risk" class="block font-body text-xs font-medium text-slate-700">Risk if Deviated</label>
+              <select id="e-risk" bind:value={eRisk} class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-risk">
                 {#each RISK_LEVELS as r}
                   <option value={r}>{r}</option>
                 {/each}
               </select>
             </div>
             <div>
-              <label for="e-redline" class="block text-xs font-medium text-gray-600">Redline Template</label>
-              <textarea id="e-redline" bind:value={eRedlineTemplate} rows="3" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-redline"></textarea>
+              <label for="e-redline" class="block font-body text-xs font-medium text-slate-700">Redline Template</label>
+              <textarea id="e-redline" bind:value={eRedlineTemplate} rows="3" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-redline"></textarea>
             </div>
             <div>
-              <label for="e-notes" class="block text-xs font-medium text-gray-600">Notes</label>
-              <textarea id="e-notes" bind:value={eNotes} rows="2" class="mt-1 w-full rounded border-gray-300 text-sm" data-testid="editor-notes"></textarea>
+              <label for="e-notes" class="block font-body text-xs font-medium text-slate-700">Notes</label>
+              <textarea id="e-notes" bind:value={eNotes} rows="2" class="mt-1 w-full rounded-lg border-slate-300 text-sm font-body focus:border-coral focus:ring-2 focus:ring-coral/50" data-testid="editor-notes"></textarea>
             </div>
 
             <div class="flex justify-end gap-2 pt-2">
               <button
                 type="button"
-                class="rounded border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+                class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-100 font-body transition-all duration-150"
                 on:click={() => { editingRule = null; }}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                class="rounded bg-navy-800 px-3 py-1.5 text-sm font-medium text-white hover:bg-navy-700"
+                class="rounded-lg bg-coral px-3 py-1.5 text-sm font-medium text-white hover:brightness-110 font-body transition-all duration-150 active:scale-[0.98]"
                 data-testid="editor-save"
               >
                 {isNew ? "Create Rule" : "Save Changes"}

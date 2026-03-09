@@ -128,8 +128,8 @@ describe("Agent Monitor", () => {
 
     // Check status indicators
     const statusDots = screen.getAllByTestId("status-dot");
-    expect(statusDots[0]!.className).toContain("bg-green");
-    expect(statusDots[2]!.className).toContain("bg-gray");
+    expect(statusDots[0]!.className).toContain("bg-success");
+    expect(statusDots[2]!.className).toContain("bg-slate");
 
     // Check success rate
     const rates = screen.getAllByTestId("agent-success-rate");

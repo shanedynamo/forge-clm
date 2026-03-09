@@ -130,9 +130,9 @@
 
   function severityClass(item: ComplianceItem): string {
     const days = daysUntil(item.dueDate);
-    if (days <= 3) return "border-l-4 border-l-red-500";
-    if (days <= 7) return "border-l-4 border-l-amber-500";
-    return "border-l-4 border-l-green-500";
+    if (days <= 3) return "border-l-4 border-l-danger";
+    if (days <= 7) return "border-l-4 border-l-warning";
+    return "border-l-4 border-l-success";
   }
 
   // ─── Funding sorted by most critical ────────────────────────────
@@ -157,50 +157,50 @@
   }
 </script>
 
-<div data-testid="compliance-page">
-  <!-- ─── Summary Cards ──────────────────────────────────────────── -->
+<div class="page-enter" data-testid="compliance-page">
+  <!-- ─── Summary Cards (Pulse Strip) ──────────────────────────────── -->
   <section class="mb-8" data-testid="summary-cards">
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div
-        class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
+        class="rounded-lg border border-slate-300 bg-white p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
         data-testid="card-due-this-week"
       >
-        <div class="text-sm font-medium text-gray-500">Due This Week</div>
-        <div class="mt-2 text-3xl font-bold text-navy-900">
+        <div class="font-body text-sm text-slate-700">Due This Week</div>
+        <div class="mt-2 font-dramatic text-3xl font-bold text-slate-900">
           {data.dueThisWeek.length}
         </div>
       </div>
 
       <div
-        class="rounded-lg border border-red-200 bg-red-50 p-5 shadow-sm"
+        class="rounded-lg border border-danger/30 bg-danger/5 p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
         data-testid="card-overdue"
       >
-        <div class="text-sm font-medium text-red-600">Overdue Items</div>
-        <div class="mt-2 text-3xl font-bold text-red-700">
+        <div class="font-body text-sm text-danger">Overdue Items</div>
+        <div class="mt-2 font-dramatic text-3xl font-bold text-danger">
           {data.overdueItems.length}
         </div>
       </div>
 
       <div
-        class="rounded-lg border border-purple-200 bg-purple-50 p-5 shadow-sm"
+        class="rounded-lg border border-info/30 bg-info/5 p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
         data-testid="card-option-windows"
       >
-        <div class="text-sm font-medium text-purple-600">
+        <div class="font-body text-sm text-info">
           Option Windows (90d)
         </div>
-        <div class="mt-2 text-3xl font-bold text-purple-700">
+        <div class="mt-2 font-dramatic text-3xl font-bold text-info">
           {data.optionWindows.length}
         </div>
       </div>
 
       <div
-        class="rounded-lg border border-orange-200 bg-orange-50 p-5 shadow-sm"
+        class="rounded-lg border border-warning/30 bg-warning/5 p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
         data-testid="card-ceiling-alerts"
       >
-        <div class="text-sm font-medium text-orange-600">
+        <div class="font-body text-sm text-warning">
           Approaching Ceiling
         </div>
-        <div class="mt-2 text-3xl font-bold text-orange-700">
+        <div class="mt-2 font-dramatic text-3xl font-bold text-warning">
           {ceilingAlertCount}
         </div>
       </div>
@@ -209,21 +209,21 @@
 
   <!-- ─── Calendar View ──────────────────────────────────────────── -->
   <section class="mb-8" data-testid="calendar-section">
-    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+    <div class="rounded-lg border border-slate-300 bg-white p-5 shadow-sm">
       <div class="mb-4 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-navy-900">
+        <h2 class="font-heading font-semibold text-lg text-slate-900">
           {MONTH_NAMES[data.calendarMonth - 1]} {data.calendarYear}
         </h2>
         <div class="flex gap-2">
           <a
             href="?year={data.calendarMonth === 1 ? data.calendarYear - 1 : data.calendarYear}&month={data.calendarMonth === 1 ? 12 : data.calendarMonth - 1}"
-            class="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+            class="rounded-lg border border-slate-300 bg-white px-3 py-1 text-sm font-body hover:bg-slate-100 transition-all duration-150"
           >
             &larr; Prev
           </a>
           <a
             href="?year={data.calendarMonth === 12 ? data.calendarYear + 1 : data.calendarYear}&month={data.calendarMonth === 12 ? 1 : data.calendarMonth + 1}"
-            class="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+            class="rounded-lg border border-slate-300 bg-white px-3 py-1 text-sm font-body hover:bg-slate-100 transition-all duration-150"
           >
             Next &rarr;
           </a>
@@ -231,7 +231,7 @@
       </div>
 
       <!-- Legend -->
-      <div class="mb-3 flex gap-4 text-xs">
+      <div class="mb-3 flex gap-4 text-xs font-body">
         <span class="flex items-center gap-1">
           <span class="inline-block h-2.5 w-2.5 rounded-full bg-blue-500"></span> Deliverables
         </span>
@@ -247,9 +247,9 @@
       </div>
 
       <!-- Calendar Grid -->
-      <div class="grid grid-cols-7 gap-px bg-gray-200" data-testid="calendar-grid">
+      <div class="grid grid-cols-7 gap-px bg-slate-300" data-testid="calendar-grid">
         {#each DAY_NAMES as dayName}
-          <div class="bg-gray-50 px-2 py-1.5 text-center text-xs font-semibold text-gray-500">
+          <div class="bg-slate-100 px-2 py-1.5 text-center font-heading text-xs font-semibold text-slate-700">
             {dayName}
           </div>
         {/each}
@@ -257,9 +257,9 @@
         {#each calDays as cell}
           {@const cellDeadlines = deadlinesForDate(cell.dateStr)}
           <button
-            class="min-h-[4rem] bg-white px-2 py-1 text-left transition-colors hover:bg-gray-50
-              {!cell.inMonth ? 'text-gray-300' : 'text-gray-700'}
-              {selectedDate === cell.dateStr ? 'ring-2 ring-navy-500' : ''}"
+            class="min-h-[4rem] bg-white px-2 py-1 text-left transition-colors hover:bg-slate-100
+              {!cell.inMonth ? 'text-slate-300' : 'text-slate-700'}
+              {selectedDate === cell.dateStr ? 'ring-2 ring-coral' : ''}"
             on:click={() => { selectedDate = selectedDate === cell.dateStr ? null : cell.dateStr; }}
             data-testid="calendar-day"
             data-date={cell.dateStr}
@@ -269,13 +269,13 @@
               <div class="mt-0.5 flex flex-wrap gap-0.5">
                 {#each cellDeadlines.slice(0, 3) as dl}
                   <span
-                    class="inline-block h-2 w-2 rounded-full {DEADLINE_TYPE_COLORS[dl.type] ?? 'bg-gray-400'}"
+                    class="inline-block h-2 w-2 rounded-full {DEADLINE_TYPE_COLORS[dl.type] ?? 'bg-slate-400'}"
                     title="{dl.title} ({dl.contractNumber})"
                     data-testid="deadline-marker"
                   ></span>
                 {/each}
                 {#if cellDeadlines.length > 3}
-                  <span class="text-[10px] text-gray-400">+{cellDeadlines.length - 3}</span>
+                  <span class="text-[10px] text-slate-400">+{cellDeadlines.length - 3}</span>
                 {/if}
               </div>
             {/if}
@@ -287,19 +287,19 @@
       {#if selectedDate}
         {@const items = deadlinesForDate(selectedDate)}
         {#if items.length > 0}
-          <div class="mt-4 rounded-lg border border-navy-200 bg-navy-50 p-4" data-testid="calendar-detail">
-            <h3 class="mb-2 text-sm font-semibold text-navy-900">
+          <div class="mt-4 rounded-lg border border-coral/20 bg-coral-50 p-4" data-testid="calendar-detail">
+            <h3 class="mb-2 font-heading text-sm font-semibold text-slate-900">
               {formatDate(selectedDate)} — {items.length} item{items.length !== 1 ? "s" : ""}
             </h3>
             <div class="space-y-1">
               {#each items as item}
                 <div class="flex items-center gap-2 text-sm" data-testid="calendar-detail-item">
-                  <span class="inline-block h-2 w-2 rounded-full {DEADLINE_TYPE_COLORS[item.type] ?? 'bg-gray-400'}"></span>
-                  <a href="/contracts/{item.contractId}" class="font-medium text-navy-800 hover:underline">
+                  <span class="inline-block h-2 w-2 rounded-full {DEADLINE_TYPE_COLORS[item.type] ?? 'bg-slate-400'}"></span>
+                  <a href="/contracts/{item.contractId}" class="font-medium text-coral hover:text-coral-700 hover:underline">
                     {item.contractNumber}
                   </a>
-                  <span class="text-gray-600">{item.title}</span>
-                  <span class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500">{item.type}</span>
+                  <span class="text-slate-600">{item.title}</span>
+                  <span class="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-500">{item.type}</span>
                 </div>
               {/each}
             </div>
@@ -312,19 +312,19 @@
   <div class="mb-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
     <!-- ─── Overdue Items Table ────────────────────────────────────── -->
     <section data-testid="overdue-section">
-      <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
-        <div class="border-b border-gray-200 px-5 py-4">
-          <h2 class="text-lg font-semibold text-red-700">
+      <div class="rounded-lg border border-slate-300 bg-white shadow-sm">
+        <div class="border-b border-slate-200 px-5 py-4">
+          <h2 class="font-heading font-semibold text-lg text-slate-900">
             Overdue Items ({data.overdueItems.length})
           </h2>
         </div>
 
         {#if data.overdueItems.length === 0}
-          <div class="p-5 text-sm text-gray-400">No overdue items</div>
+          <div class="p-5 text-sm text-slate-400">No overdue items</div>
         {:else}
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm" data-testid="overdue-table">
-              <thead class="border-b border-gray-200 bg-gray-50">
+            <table class="dynamo-table w-full text-left text-sm" data-testid="overdue-table">
+              <thead class="bg-slate-100">
                 <tr>
                   {#each [
                     { key: "contractNumber", label: "Contract" },
@@ -335,9 +335,9 @@
                     { key: "responsibleParty", label: "Responsible" },
                     { key: "status", label: "Status" },
                   ] as col}
-                    <th class="whitespace-nowrap px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">
+                    <th class="whitespace-nowrap px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700">
                       <button
-                        class="hover:text-navy-800"
+                        class="hover:text-coral"
                         on:click={() => toggleOverdueSort(col.key as keyof OverdueItem)}
                         data-testid="sort-{col.key}"
                       >
@@ -348,28 +348,28 @@
                       </button>
                     </th>
                   {/each}
-                  <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600">
+                  <th class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700">
                     Action
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100">
+              <tbody class="divide-y divide-slate-100">
                 {#each sortedOverdueItems as item (item.id)}
                   <tr data-testid="overdue-row">
                     <td class="px-3 py-2.5">
-                      <a href="/contracts/{item.contractId}" class="font-medium text-navy-800 hover:underline">
+                      <a href="/contracts/{item.contractId}" class="font-medium text-coral hover:text-coral-700 hover:underline">
                         {item.contractNumber}
                       </a>
                     </td>
-                    <td class="px-3 py-2.5 text-gray-600">{item.itemType}</td>
-                    <td class="max-w-[200px] truncate px-3 py-2.5 text-gray-600">{item.description}</td>
-                    <td class="px-3 py-2.5 text-gray-600">{formatDate(item.dueDate)}</td>
+                    <td class="px-3 py-2.5 text-slate-600">{item.itemType}</td>
+                    <td class="max-w-[200px] truncate px-3 py-2.5 text-slate-600">{item.description}</td>
+                    <td class="px-3 py-2.5 text-slate-600">{formatDate(item.dueDate)}</td>
                     <td class="px-3 py-2.5">
-                      <span class="font-semibold text-red-700" data-testid="days-overdue">
+                      <span class="font-bold text-danger" data-testid="days-overdue">
                         {item.daysOverdue}d
                       </span>
                     </td>
-                    <td class="px-3 py-2.5 text-gray-600">{item.responsibleParty}</td>
+                    <td class="px-3 py-2.5 text-slate-600">{item.responsibleParty}</td>
                     <td class="px-3 py-2.5">
                       <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {statusColor(item.status)}">
                         {statusLabel(item.status)}
@@ -377,8 +377,10 @@
                     </td>
                     <td class="px-3 py-2.5">
                       <button
-                        class="rounded border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50
-                          {jiraCreatedId === item.id ? 'border-green-300 bg-green-50 text-green-700' : ''}"
+                        class="rounded border px-2 py-1 text-xs font-medium transition-all duration-150
+                          {jiraCreatedId === item.id
+                            ? 'border-success/30 bg-success/5 text-success'
+                            : 'border-slate-300 text-slate-700 hover:bg-slate-100'}"
                         on:click={() => createJiraTicket(item)}
                         data-testid="jira-btn"
                       >
@@ -396,20 +398,20 @@
 
     <!-- ─── Upcoming Deadlines ─────────────────────────────────────── -->
     <section data-testid="upcoming-section">
-      <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
-        <div class="border-b border-gray-200 px-5 py-4">
-          <h2 class="text-lg font-semibold text-navy-900">
+      <div class="rounded-lg border border-slate-300 bg-white shadow-sm">
+        <div class="border-b border-slate-200 px-5 py-4">
+          <h2 class="font-heading font-semibold text-lg text-slate-900">
             Upcoming Deadlines (30 days)
           </h2>
         </div>
 
         {#if weekGroups.length === 0}
-          <div class="p-5 text-sm text-gray-400">No upcoming deadlines</div>
+          <div class="p-5 text-sm text-slate-400">No upcoming deadlines</div>
         {:else}
-          <div class="divide-y divide-gray-100">
+          <div class="divide-y divide-slate-100">
             {#each weekGroups as group}
               <div data-testid="week-group">
-                <div class="bg-gray-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-gray-500" data-testid="week-label">
+                <div class="bg-slate-100 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-slate-500 font-heading" data-testid="week-label">
                   {group.label} ({group.items.length})
                 </div>
                 {#each group.items as item (item.id)}
@@ -418,14 +420,14 @@
                     data-testid="upcoming-item"
                   >
                     <div>
-                      <span class="text-sm font-medium text-gray-900">{item.milestoneName}</span>
-                      <span class="ml-2 text-xs text-gray-500">{item.contractNumber}</span>
+                      <span class="text-sm font-medium text-slate-900">{item.milestoneName}</span>
+                      <span class="ml-2 text-xs text-slate-500">{item.contractNumber}</span>
                     </div>
                     <div class="flex items-center gap-2">
                       <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {statusColor(item.status)}">
                         {statusLabel(item.status)}
                       </span>
-                      <span class="text-xs text-gray-500">{formatDate(item.dueDate)}</span>
+                      <span class="font-mono text-xs text-slate-700">{formatDate(item.dueDate)}</span>
                     </div>
                   </div>
                 {/each}
@@ -440,49 +442,49 @@
   <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
     <!-- ─── Funding Status Overview ────────────────────────────────── -->
     <section data-testid="funding-section">
-      <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
-        <div class="border-b border-gray-200 px-5 py-4">
-          <h2 class="text-lg font-semibold text-navy-900">Funding Status</h2>
+      <div class="rounded-lg border border-slate-300 bg-white shadow-sm">
+        <div class="border-b border-slate-200 px-5 py-4">
+          <h2 class="font-heading font-semibold text-lg text-slate-900">Funding Status</h2>
         </div>
 
         {#if sortedFunding.length === 0}
-          <div class="p-5 text-sm text-gray-400">No active contracts</div>
+          <div class="p-5 text-sm text-slate-400">No active contracts</div>
         {:else}
-          <div class="divide-y divide-gray-100">
+          <div class="divide-y divide-slate-100">
             {#each sortedFunding as fs (fs.contractId)}
               <div class="px-5 py-3" data-testid="funding-row">
                 <div class="mb-1 flex items-center justify-between">
-                  <a href="/contracts/{fs.contractId}" class="text-sm font-medium text-navy-800 hover:underline">
+                  <a href="/contracts/{fs.contractId}" class="text-sm font-medium text-coral hover:text-coral-700 hover:underline">
                     {fs.contractNumber}
                   </a>
-                  <span class="text-xs text-gray-500">
+                  <span class="text-xs text-slate-500">
                     {formatCurrency(fs.fundedValue)} / {formatCurrency(fs.ceilingValue)}
                   </span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="h-3 flex-1 overflow-hidden rounded-full bg-gray-200">
+                  <div class="h-3 flex-1 overflow-hidden rounded-full bg-slate-200">
                     <div
                       class="h-full rounded-full transition-all
-                        {fs.percentFunded > 90 ? 'bg-red-500' :
-                         fs.percentFunded > 80 ? 'bg-orange-500' :
+                        {fs.percentFunded > 90 ? 'bg-danger' :
+                         fs.percentFunded > 80 ? 'bg-warning' :
                          fs.percentFunded > 60 ? 'bg-amber-400' :
-                         'bg-green-500'}"
+                         'bg-success'}"
                       style="width: {Math.min(fs.percentFunded, 100)}%"
                       data-testid="funding-bar"
                     ></div>
                   </div>
                   <span
-                    class="w-12 text-right text-xs font-semibold
-                      {fs.percentFunded > 90 ? 'text-red-700' :
-                       fs.percentFunded > 80 ? 'text-orange-700' :
-                       'text-gray-700'}"
+                    class="w-12 text-right text-xs font-semibold font-mono
+                      {fs.percentFunded > 90 ? 'text-danger' :
+                       fs.percentFunded > 80 ? 'text-warning' :
+                       'text-slate-700'}"
                     data-testid="funding-percent"
                   >
                     {fs.percentFunded}%
                   </span>
                 </div>
                 {#if fs.projectedRunout}
-                  <div class="mt-1 text-xs text-gray-400">
+                  <div class="mt-1 text-xs font-mono text-slate-500">
                     Projected runout: {formatDate(fs.projectedRunout)}
                   </div>
                 {/if}
@@ -495,26 +497,26 @@
 
     <!-- ─── Option Exercise Tracker ────────────────────────────────── -->
     <section data-testid="options-section">
-      <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
-        <div class="border-b border-gray-200 px-5 py-4">
-          <h2 class="text-lg font-semibold text-navy-900">
+      <div class="rounded-lg border border-slate-300 bg-white shadow-sm">
+        <div class="border-b border-slate-200 px-5 py-4">
+          <h2 class="font-heading font-semibold text-lg text-slate-900">
             Option Exercise Tracker
           </h2>
         </div>
 
         {#if data.optionWindows.length === 0}
-          <div class="p-5 text-sm text-gray-400">No upcoming option windows</div>
+          <div class="p-5 text-sm text-slate-400">No upcoming option windows</div>
         {:else}
-          <div class="divide-y divide-gray-100">
+          <div class="divide-y divide-slate-100">
             {#each data.optionWindows as opt (opt.id)}
               {@const days = daysUntil(opt.exerciseDeadline)}
               <div class="px-5 py-3" data-testid="option-tracker-row">
                 <div class="flex items-center justify-between">
                   <div>
-                    <a href="/contracts/{opt.contractId}" class="text-sm font-medium text-navy-800 hover:underline">
+                    <a href="/contracts/{opt.contractId}" class="text-sm font-medium text-coral hover:text-coral-700 hover:underline">
                       {opt.contractNumber}
                     </a>
-                    <span class="ml-2 text-xs text-gray-500">Option {opt.optionNumber}</span>
+                    <span class="ml-2 text-xs text-slate-500">Option {opt.optionNumber}</span>
                   </div>
                   <span
                     class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {statusColor(opt.status)}"
@@ -523,14 +525,14 @@
                   </span>
                 </div>
                 <div class="mt-2 flex items-center justify-between">
-                  <span class="text-xs text-gray-500">
-                    Value: {formatCurrency(opt.optionValue)} — Deadline: {formatDate(opt.exerciseDeadline)}
+                  <span class="text-xs text-slate-500">
+                    Value: <span class="font-mono">{formatCurrency(opt.optionValue)}</span> — Deadline: <span class="font-mono">{formatDate(opt.exerciseDeadline)}</span>
                   </span>
                   <span
-                    class="rounded px-2 py-0.5 text-xs font-semibold
-                      {days < 0 ? 'bg-red-100 text-red-700' :
-                       days <= 30 ? 'bg-amber-100 text-amber-700' :
-                       'bg-green-100 text-green-700'}"
+                    class="rounded-full px-2.5 py-0.5 text-xs font-medium font-mono
+                      {days < 0 ? 'bg-danger/10 text-danger' :
+                       days <= 30 ? 'bg-warning/10 text-warning' :
+                       'bg-success/10 text-success'}"
                     data-testid="option-countdown"
                   >
                     {days < 0 ? `${Math.abs(days)}d overdue` : `${days}d remaining`}

@@ -3,6 +3,7 @@
   import { formatCurrency, formatDate, statusColor, statusLabel } from "$lib/format.js";
   import { canWrite } from "$lib/auth.js";
   import type { AuthRole } from "$lib/types.js";
+  import { Search } from "lucide-svelte";
 
   export let data: PaginatedResponse<ContractSummary> & {
     search: string;
@@ -61,15 +62,15 @@
   ];
 </script>
 
-<div class="flex gap-6" data-testid="contracts-page">
+<div class="page-enter flex gap-6" data-testid="contracts-page">
   <!-- Filter Sidebar -->
   <aside class="hidden w-56 shrink-0 lg:block" data-testid="filter-sidebar">
-    <form method="get" class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <h3 class="text-sm font-semibold text-gray-700">Filters</h3>
+    <form method="get" class="space-y-4 rounded-lg border border-slate-300 bg-white p-4 shadow-sm">
+      <h3 class="font-heading text-sm font-semibold text-slate-900">Filters</h3>
 
       <div>
-        <label for="filter-status" class="block text-xs font-medium text-gray-600">Status</label>
-        <select id="filter-status" name="status" class="mt-1 w-full rounded border-gray-300 text-sm" value={data.status}>
+        <label for="filter-status" class="block font-body text-xs font-medium text-slate-700">Status</label>
+        <select id="filter-status" name="status" class="mt-1 w-full rounded-lg border-slate-300 text-sm" value={data.status}>
           <option value="">All</option>
           {#each STATUS_OPTIONS as s}
             <option value={s}>{statusLabel(s)}</option>
@@ -78,8 +79,8 @@
       </div>
 
       <div>
-        <label for="filter-type" class="block text-xs font-medium text-gray-600">Contract Type</label>
-        <select id="filter-type" name="contractType" class="mt-1 w-full rounded border-gray-300 text-sm" value={data.contractType}>
+        <label for="filter-type" class="block font-body text-xs font-medium text-slate-700">Contract Type</label>
+        <select id="filter-type" name="contractType" class="mt-1 w-full rounded-lg border-slate-300 text-sm" value={data.contractType}>
           <option value="">All</option>
           {#each CONTRACT_TYPES as t}
             <option value={t}>{t}</option>
@@ -88,18 +89,21 @@
       </div>
 
       <div>
-        <label for="filter-agency" class="block text-xs font-medium text-gray-600">Agency</label>
+        <label for="filter-agency" class="block font-body text-xs font-medium text-slate-700">Agency</label>
         <input
           id="filter-agency"
           name="agency"
           type="text"
           placeholder="e.g. USAF"
-          class="mt-1 w-full rounded border-gray-300 text-sm"
+          class="mt-1 w-full rounded-lg border-slate-300 text-sm focus:border-coral focus:ring-2 focus:ring-coral/50"
           value={data.agency}
         />
       </div>
 
-      <button type="submit" class="w-full rounded bg-navy-800 px-3 py-1.5 text-sm font-medium text-white hover:bg-navy-700">
+      <button
+        type="submit"
+        class="dynamo-btn w-full rounded-lg bg-coral px-3 py-1.5 text-sm font-medium text-white hover:brightness-110 active:scale-[0.98]"
+      >
         Apply Filters
       </button>
     </form>
@@ -110,13 +114,13 @@
     <!-- Header -->
     <div class="mb-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <h2 class="text-lg font-semibold text-navy-900">Contracts</h2>
-        <span class="text-sm text-gray-500">({pagination.total} total)</span>
+        <h2 class="font-heading text-lg font-semibold text-slate-900">Contracts</h2>
+        <span class="font-body text-sm text-slate-700">({pagination.total} total)</span>
       </div>
 
       <a
         href="/contracts/new"
-        class="inline-flex items-center gap-1.5 rounded-md bg-accent-600 px-3 py-2 text-sm font-medium text-white hover:bg-accent-500"
+        class="dynamo-btn inline-flex items-center gap-1.5 rounded-lg bg-coral px-3 py-2 text-sm font-medium text-white transition-all duration-150 hover:brightness-110 active:scale-[0.98]"
         data-testid="new-contract-btn"
       >
         + New Contract
@@ -131,24 +135,22 @@
           type="text"
           placeholder="Search by contract number..."
           value={data.search}
-          class="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-sm focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
+          class="w-full rounded-lg border border-slate-300 py-2 pl-10 pr-4 font-body text-sm focus:border-coral focus:outline-none focus:ring-2 focus:ring-coral/50"
           data-testid="search-input"
         />
-        <svg class="absolute left-3 top-2.5 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
+        <Search class="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
       </div>
     </form>
 
     <!-- Data Table -->
-    <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
-      <table class="w-full text-left text-sm" data-testid="contracts-table">
-        <thead class="border-b border-gray-200 bg-gray-50">
+    <div class="overflow-x-auto rounded-lg border border-slate-300 bg-white shadow-sm">
+      <table class="dynamo-table w-full text-left text-sm" data-testid="contracts-table">
+        <thead class="border-b border-slate-200 bg-slate-100">
           <tr>
             {#each COLUMNS as col}
-              <th class="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-600">
+              <th class="whitespace-nowrap px-4 py-3 font-heading text-xs font-semibold uppercase tracking-wide text-slate-700">
                 {#if col.sortable}
-                  <a href={sortUrl(col.key)} class="hover:text-navy-800" data-testid="sort-{col.key}">
+                  <a href={sortUrl(col.key)} class="hover:text-coral" data-testid="sort-{col.key}">
                     {col.label}{sortIndicator(col.key)}
                   </a>
                 {:else}
@@ -158,38 +160,39 @@
             {/each}
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-100">
+        <tbody class="divide-y divide-slate-200">
           {#if contracts.length === 0}
             <tr>
-              <td colspan={COLUMNS.length} class="px-4 py-8 text-center text-gray-400" data-testid="empty-state">
-                No contracts found
+              <td colspan={COLUMNS.length} class="px-4 py-12 text-center" data-testid="empty-state">
+                <p class="font-heading text-base font-semibold text-slate-900">No contracts found</p>
+                <p class="mt-1 font-body text-sm text-slate-700">Try adjusting your filters or search terms.</p>
               </td>
             </tr>
           {:else}
             {#each contracts as contract (contract.id)}
               <tr
-                class="cursor-pointer transition-colors hover:bg-gray-50"
+                class="cursor-pointer transition-colors"
                 data-testid="contract-row"
               >
                 <td class="px-4 py-3">
-                  <a href="/contracts/{contract.id}" class="font-medium text-navy-800 hover:underline">
+                  <a href="/contracts/{contract.id}" class="font-medium text-coral hover:text-coral-700">
                     {contract.contractNumber}
                   </a>
                 </td>
                 <td class="px-4 py-3">
                   <span
-                    class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {statusColor(contract.status)}"
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium {statusColor(contract.status)}"
                     data-testid="status-badge"
                   >
                     {statusLabel(contract.status)}
                   </span>
                 </td>
-                <td class="px-4 py-3 text-gray-600">{contract.contractType}</td>
-                <td class="px-4 py-3 font-medium">{formatCurrency(contract.ceilingValue)}</td>
-                <td class="px-4 py-3">{formatCurrency(contract.fundedValue)}</td>
-                <td class="px-4 py-3 text-gray-600">{contract.awardingAgency}</td>
-                <td class="px-4 py-3 text-gray-600">{formatDate(contract.popStart)}</td>
-                <td class="px-4 py-3 text-gray-600">{formatDate(contract.popEnd)}</td>
+                <td class="px-4 py-3 font-body text-slate-700">{contract.contractType}</td>
+                <td class="px-4 py-3 font-body font-medium text-slate-900">{formatCurrency(contract.ceilingValue)}</td>
+                <td class="px-4 py-3 font-body font-medium text-slate-900">{formatCurrency(contract.fundedValue)}</td>
+                <td class="px-4 py-3 font-body text-slate-700">{contract.awardingAgency}</td>
+                <td class="px-4 py-3 font-mono text-slate-700">{formatDate(contract.popStart)}</td>
+                <td class="px-4 py-3 font-mono text-slate-700">{formatDate(contract.popEnd)}</td>
               </tr>
             {/each}
           {/if}
@@ -200,14 +203,14 @@
     <!-- Pagination -->
     {#if pagination.totalPages > 1}
       <nav class="mt-4 flex items-center justify-between" data-testid="pagination">
-        <span class="text-sm text-gray-500">
+        <span class="font-body text-sm text-slate-700">
           Page {pagination.page} of {pagination.totalPages}
         </span>
         <div class="flex gap-1">
           {#if pagination.page > 1}
             <a
               href={pageUrl(pagination.page - 1)}
-              class="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+              class="rounded-lg border border-slate-300 bg-white px-3 py-1 font-body text-sm text-slate-700 hover:bg-slate-100"
               data-testid="prev-page"
             >
               Previous
@@ -216,7 +219,7 @@
           {#if pagination.page < pagination.totalPages}
             <a
               href={pageUrl(pagination.page + 1)}
-              class="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+              class="rounded-lg border border-slate-300 bg-white px-3 py-1 font-body text-sm text-slate-700 hover:bg-slate-100"
               data-testid="next-page"
             >
               Next

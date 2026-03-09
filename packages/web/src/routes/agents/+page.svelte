@@ -54,13 +54,13 @@
   function agentStatusColor(status: string): string {
     switch (status) {
       case "ENABLED":
-        return "bg-green-500";
+        return "bg-success";
       case "DISABLED":
-        return "bg-gray-300";
+        return "bg-slate-300";
       case "ERROR":
-        return "bg-red-500";
+        return "bg-danger";
       default:
-        return "bg-gray-300";
+        return "bg-slate-300";
     }
   }
 
@@ -80,50 +80,50 @@
     executions.find((e) => e.id === selectedExecutionId) ?? null;
 </script>
 
-<div data-testid="agents-page">
+<div class="page-enter" data-testid="agents-page">
   <!-- System Health -->
   <div class="mb-6" data-testid="system-health">
-    <h2 class="mb-3 text-lg font-semibold text-navy-900">System Health</h2>
+    <h2 class="mb-3 font-heading font-semibold text-lg text-slate-900">System Health</h2>
     <div class="grid grid-cols-4 gap-4">
       <div
-        class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+        class="border border-slate-300 bg-white rounded-lg shadow-sm p-5 hover:shadow-md transition-shadow duration-200"
         data-testid="health-queue-depth"
       >
-        <div class="text-xs font-medium uppercase text-gray-500">
+        <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">
           Queue Depth
         </div>
-        <div class="mt-1 text-2xl font-bold text-navy-900">
+        <div class="mt-1 font-dramatic text-2xl font-bold text-slate-900">
           {data.health.queueDepth}
         </div>
       </div>
       <div
-        class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+        class="border border-slate-300 bg-white rounded-lg shadow-sm p-5 hover:shadow-md transition-shadow duration-200"
         data-testid="health-active-tasks"
       >
-        <div class="text-xs font-medium uppercase text-gray-500">
+        <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">
           Active Tasks
         </div>
-        <div class="mt-1 text-2xl font-bold text-navy-900">
+        <div class="mt-1 font-dramatic text-2xl font-bold text-slate-900">
           {data.health.activeTasks}
         </div>
       </div>
       <div
-        class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+        class="border border-slate-300 bg-white rounded-lg shadow-sm p-5 hover:shadow-md transition-shadow duration-200"
         data-testid="health-error-rate"
       >
-        <div class="text-xs font-medium uppercase text-gray-500">
+        <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">
           Error Rate
         </div>
-        <div class="mt-1 text-2xl font-bold text-navy-900">
+        <div class="mt-1 font-dramatic text-2xl font-bold text-slate-900">
           {formatRate(data.health.errorRate)}
         </div>
       </div>
       <div
-        class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+        class="border border-slate-300 bg-white rounded-lg shadow-sm p-5 hover:shadow-md transition-shadow duration-200"
         data-testid="health-uptime"
       >
-        <div class="text-xs font-medium uppercase text-gray-500">Uptime</div>
-        <div class="mt-1 text-2xl font-bold text-navy-900">
+        <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">Uptime</div>
+        <div class="mt-1 font-dramatic text-2xl font-bold text-slate-900">
           {data.health.uptime}
         </div>
       </div>
@@ -132,53 +132,53 @@
 
   <!-- Agent Registry -->
   <div class="mb-6">
-    <h2 class="mb-3 text-lg font-semibold text-navy-900">Agent Registry</h2>
+    <h2 class="mb-3 font-heading font-semibold text-lg text-slate-900">Agent Registry</h2>
     <div
-      class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm"
+      class="overflow-hidden rounded-lg border border-slate-300 bg-white shadow-sm"
     >
-      <table class="w-full text-left text-sm" data-testid="agent-table">
-        <thead class="border-b border-gray-200 bg-gray-50">
+      <table class="dynamo-table w-full text-left text-sm" data-testid="agent-table">
+        <thead class="bg-slate-100">
           <tr>
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Name</th
             >
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Type</th
             >
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Status</th
             >
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Last Run</th
             >
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Success Rate</th
             >
             <th
-              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-gray-600"
+              class="px-3 py-2.5 text-xs font-semibold uppercase tracking-wide text-slate-700 font-heading"
               >Avg Time</th
             >
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-100">
+        <tbody class="divide-y divide-slate-200">
           {#each data.agents as agent (agent.id)}
             <tr
-              class="cursor-pointer transition-colors hover:bg-gray-50
-                {selectedAgentId === agent.id ? 'bg-navy-50' : ''}"
+              class="cursor-pointer transition-colors hover:bg-slate-100/50
+                {selectedAgentId === agent.id ? 'bg-coral-50' : ''}"
               on:click={() => selectAgent(agent)}
               data-testid="agent-row"
               data-agent-id={agent.id}
             >
               <td
-                class="px-3 py-2.5 font-medium text-gray-900"
+                class="px-3 py-2.5 font-body font-medium text-slate-900"
                 data-testid="agent-name">{agent.name}</td
               >
-              <td class="px-3 py-2.5 text-gray-600" data-testid="agent-type"
+              <td class="px-3 py-2.5 text-slate-600" data-testid="agent-type"
                 >{agent.type.replace(/_/g, " ")}</td
               >
               <td class="px-3 py-2.5" data-testid="agent-status">
@@ -193,18 +193,18 @@
                 </span>
               </td>
               <td
-                class="px-3 py-2.5 text-gray-600"
+                class="px-3 py-2.5 font-mono text-slate-700"
                 data-testid="agent-last-run"
               >
                 {agent.lastRunAt ? formatDate(agent.lastRunAt) : "Never"}
               </td>
               <td
-                class="px-3 py-2.5 text-gray-600"
+                class="px-3 py-2.5 font-mono text-slate-600"
                 data-testid="agent-success-rate"
                 >{formatRate(agent.successRate)}</td
               >
               <td
-                class="px-3 py-2.5 text-gray-600"
+                class="px-3 py-2.5 font-mono text-slate-600"
                 data-testid="agent-avg-time"
                 >{formatDuration(agent.avgExecutionTimeMs)}</td
               >
@@ -219,12 +219,12 @@
   {#if selectedAgent}
     <div data-testid="execution-panel">
       <div class="mb-3 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-navy-900">
+        <h2 class="font-heading font-semibold text-lg text-slate-900">
           Execution History &mdash; {selectedAgent.name}
         </h2>
         {#if data.userRole === "admin"}
           <button
-            class="rounded-md bg-accent-600 px-4 py-2 text-sm font-medium text-white hover:bg-accent-500 disabled:opacity-50"
+            class="rounded-lg bg-coral px-4 py-2 text-sm font-medium text-white hover:brightness-110 transition-all duration-150 active:scale-[0.98] disabled:opacity-50"
             on:click={triggerRun}
             disabled={triggerLoading}
             data-testid="trigger-btn"
@@ -240,9 +240,9 @@
           <div class="space-y-2">
             {#each agentExecutions as exec (exec.id)}
               <button
-                class="w-full rounded-lg border border-gray-200 bg-white p-3 text-left shadow-sm transition-colors hover:bg-gray-50
+                class="w-full border border-slate-300 bg-white rounded-lg p-3 text-left shadow-sm hover:shadow-md transition-shadow duration-200
                   {selectedExecutionId === exec.id
-                  ? 'ring-2 ring-accent-500'
+                  ? 'ring-2 ring-coral'
                   : ''}"
                 on:click={() => selectExecution(exec)}
                 data-testid="execution-item"
@@ -250,28 +250,28 @@
               >
                 <div class="flex items-center justify-between">
                   <span
-                    class="rounded-full px-2 py-0.5 text-xs font-medium {executionStatusColor(
+                    class="rounded-full px-2.5 py-0.5 text-xs font-medium {executionStatusColor(
                       exec.status,
                     )}"
                     data-testid="exec-status"
                   >
                     {exec.status}
                   </span>
-                  <span class="text-xs text-gray-500"
+                  <span class="font-mono text-xs text-slate-700"
                     >{formatDuration(exec.durationMs)}</span
                   >
                 </div>
-                <div class="mt-1 text-xs text-gray-600">
+                <div class="mt-1 font-mono text-xs text-slate-700">
                   {formatDate(exec.startedAt)}
                 </div>
-                <div class="mt-0.5 truncate text-xs text-gray-500">
+                <div class="mt-0.5 truncate text-xs text-slate-500">
                   {exec.inputSummary}
                 </div>
               </button>
             {/each}
             {#if agentExecutions.length === 0}
               <div
-                class="rounded-lg border border-gray-200 bg-white p-4 text-center text-sm text-gray-500"
+                class="border border-slate-300 bg-white rounded-lg p-4 text-center text-sm text-slate-500 shadow-sm"
                 data-testid="no-executions"
               >
                 No executions found
@@ -284,31 +284,31 @@
         {#if selectedExecution}
           <div class="min-w-0 flex-1" data-testid="execution-detail">
             <div
-              class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
+              class="border border-slate-300 bg-white rounded-lg p-5 shadow-sm"
             >
               <div class="mb-4 flex items-center gap-3">
                 <span
-                  class="rounded-full px-2 py-0.5 text-xs font-medium {executionStatusColor(
+                  class="rounded-full px-2.5 py-0.5 text-xs font-medium {executionStatusColor(
                     selectedExecution.status,
                   )}"
                 >
                   {selectedExecution.status}
                 </span>
-                <span class="text-sm text-gray-600">
+                <span class="font-mono text-sm text-slate-700">
                   {formatDate(selectedExecution.startedAt)}
                 </span>
-                <span class="text-sm text-gray-600" data-testid="detail-duration">
+                <span class="font-mono text-sm text-slate-700" data-testid="detail-duration">
                   Duration: {formatDuration(selectedExecution.durationMs)}
                 </span>
               </div>
 
               <div class="space-y-3">
                 <div>
-                  <div class="text-xs font-semibold uppercase text-gray-500">
+                  <div class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide">
                     Input
                   </div>
                   <div
-                    class="mt-1 rounded bg-gray-50 p-3 text-sm text-gray-700"
+                    class="mt-1 rounded-lg bg-slate-100 p-3 font-mono text-sm text-slate-700"
                     data-testid="detail-input"
                   >
                     {selectedExecution.inputSummary}
@@ -318,12 +318,12 @@
                 {#if selectedExecution.outputSummary}
                   <div>
                     <div
-                      class="text-xs font-semibold uppercase text-gray-500"
+                      class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide"
                     >
                       Output
                     </div>
                     <div
-                      class="mt-1 rounded bg-gray-50 p-3 text-sm text-gray-700"
+                      class="mt-1 rounded-lg bg-slate-100 p-3 font-mono text-sm text-slate-700"
                       data-testid="detail-output"
                     >
                       {selectedExecution.outputSummary}
@@ -334,12 +334,12 @@
                 {#if selectedExecution.error}
                   <div>
                     <div
-                      class="text-xs font-semibold uppercase text-red-600"
+                      class="text-xs font-semibold uppercase text-slate-500 font-heading tracking-wide"
                     >
                       Error
                     </div>
                     <div
-                      class="mt-1 rounded bg-red-50 p-3 text-sm text-red-700"
+                      class="mt-1 rounded-lg bg-danger/5 p-3 font-mono text-sm text-danger"
                       data-testid="detail-error"
                     >
                       {selectedExecution.error}

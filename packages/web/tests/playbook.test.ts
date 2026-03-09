@@ -193,20 +193,20 @@ describe("Playbook — Rule list", () => {
     const toggles = screen.getAllByTestId("toggle-enabled");
     expect(toggles.length).toBe(3);
 
-    // rule-1 is enabled (green)
-    expect(toggles[0]!.className).toContain("bg-green");
-    // rule-3 is disabled (gray)
-    expect(toggles[2]!.className).toContain("bg-gray");
+    // rule-1 is enabled (success)
+    expect(toggles[0]!.className).toContain("bg-success");
+    // rule-3 is disabled (slate)
+    expect(toggles[2]!.className).toContain("bg-slate");
 
     // Toggle rule-1 off
     await fireEvent.click(toggles[0]!);
     const updatedToggles = screen.getAllByTestId("toggle-enabled");
-    expect(updatedToggles[0]!.className).toContain("bg-gray");
+    expect(updatedToggles[0]!.className).toContain("bg-slate");
 
     // Toggle rule-3 on
     await fireEvent.click(updatedToggles[2]!);
     const finalToggles = screen.getAllByTestId("toggle-enabled");
-    expect(finalToggles[2]!.className).toContain("bg-green");
+    expect(finalToggles[2]!.className).toContain("bg-success");
   });
 
   it("reorders rules by drag and drop", async () => {
